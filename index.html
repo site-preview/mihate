@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIHATE ACADEMY｜プロを目指す名古屋のボーカルスクール</title>
     
-    <!-- 検索エンジンに登録されるのを防ぐ記述 -->
     <meta name="robots" content="noindex, nofollow">
 
-    <!-- Font Awesome (SNSアイコン用) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -103,7 +101,6 @@
 
         .menu-btn span {
             width: 100%;
-            height: 20px;
             height: 2px;
             background-color: #ffffff;
             transition: all 0.3s ease;
@@ -445,7 +442,7 @@
             font-size: 24px;
             margin-bottom: 15px;
             font-weight: 700;
-        }
+         }
 
         .contact-box p {
             color: #aaaaaa;
@@ -615,6 +612,228 @@
             border-color: #ffffff;
         }
 
+        /* 1期生募集 特設キャンペーンブース */
+        .section-campaign {
+            padding: 80px 50px;
+            max-width: 1400px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .campaign-container {
+            background: linear-gradient(135deg, #161616 0%, #0a0a0a 100%);
+            border: 1px solid #c9a063; /* 上品なゴールドの細枠 */
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 背景に薄く光の演出 */
+        .campaign-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201,160,99,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .campaign-badges-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .campaign-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #c9a063;
+            border: 1px solid #c9a063;
+            padding: 4px 12px;
+            text-transform: uppercase;
+        }
+
+        .campaign-badge.highlight {
+            background-color: #c9a063;
+            color: #000000;
+        }
+
+        .campaign-title {
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 1.4;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .campaign-title span {
+            font-size: 14px;
+            color: #888888;
+            font-weight: 600;
+            letter-spacing: 4px;
+        }
+
+        /* スケジュールタイムラインのスタイル */
+        .campaign-timeline {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto 35px;
+        }
+
+        .timeline-step {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid #222222;
+            padding: 20px 15px;
+            position: relative;
+        }
+
+        .timeline-step.active {
+            border-color: #c9a063;
+            background: rgba(201, 160, 99, 0.05);
+        }
+
+        .step-date {
+            font-size: 18px;
+            font-weight: 800;
+            color: #c9a063;
+            display: block;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .timeline-step.active .step-date {
+            color: #ffffff;
+            background-color: #c9a063;
+            color: #000000;
+            display: inline-block;
+            padding: 2px 8px;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .step-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            display: block;
+        }
+
+        .step-sub {
+            font-size: 11px;
+            color: #888888;
+            margin-top: 4px;
+            display: block;
+        }
+
+        .timeline-arrow {
+            color: #444444;
+            font-size: 18px;
+        }
+
+        .campaign-text {
+            font-size: 15px;
+            color: #cccccc;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto 35px;
+        }
+
+        .campaign-cta-wrap {
+            margin-bottom: 20px;
+        }
+
+        /* プレミアム感のある輝くボタン */
+        .btn-campaign {
+            display: inline-block;
+            padding: 18px 50px;
+            background: #ffffff;
+            color: #000000;
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 15px;
+            border: 1px solid #ffffff;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        /* ボタンを通り抜ける光のエフェクト */
+        .btn-campaign::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            animation: shine 3.5s infinite linear;
+        }
+
+        .btn-campaign i {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-campaign:hover {
+            opacity: 1;
+            background: transparent;
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        .btn-campaign:hover i {
+            transform: translateX(5px);
+        }
+
+        .campaign-note {
+            font-size: 12px;
+            color: #666666;
+        }
+
+        /* 光が走るアニメーションキーフレーム */
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+
+        /* ーーー ここからスクロールアニメーション（高級感を演出） ーーー */
+
+        /* 初期状態：すべてのセクションタイトルやカード、テキストを透明にして少し下に配置 */
+        .reveal-fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), 
+                        transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        /* スクロールして画面内に入った時に付与されるクラス */
+        .reveal-fade-up.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 順番に（ディレイを持って）表示させるための設定 */
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
+        .delay-4 { transition-delay: 0.6s; }
+
+
         /* レスポンシブ（スマホ対応） */
         @media (max-width: 960px) {
             .instructor-detail-container {
@@ -634,6 +853,16 @@
                 gap: 40px;
             }
         }
+
+        /* スマホ用のキャンペーンブース調整 */
+        .section-campaign { padding: 40px 20px; margin: 10px auto; }
+        .campaign-container { padding: 40px 20px; }
+        .campaign-title { font-size: 22px; margin-bottom: 25px; }
+        .campaign-timeline { flex-direction: column; gap: 10px; margin-bottom: 25px; }
+        .timeline-step { width: 100%; padding: 15px; }
+        .timeline-arrow { transform: rotate(90deg); margin: 5px 0; }
+        .campaign-text { font-size: 13px; }
+        .btn-campaign { width: 100%; padding: 16px 20px; font-size: 14px; }
 
         @media (max-width: 768px) {
             header { 
@@ -708,20 +937,17 @@
 </head>
 <body>
 
-    <!-- ヘッダーエリア -->
     <header id="top">
         <a href="#" class="logo">
             <img src="img/logo_v2.png" alt="MIHATE ACADEMY" class="logo-img">
         </a>
         
-        <!-- ハンバーガーボタンを追加 -->
         <button class="menu-btn" aria-label="メニューを開閉する" id="js-menu-btn">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <!-- ナビゲーション（SP時は隠れてスライドインする構造に変更） -->
         <nav id="js-nav">
             <ul>
                 <li><a href="#about">About</a></li>
@@ -734,18 +960,16 @@
         </nav>
     </header>
 
-    <!-- メインビジュアル（ヒーローセクション） -->
     <section class="hero">
         <h1 class="hero-title">MIHATE<br>ACADEMY</h1>
         <p class="hero-subtitle">VOCAL & DANCE STUDIO IN NAGOYA</p>
         <a href="#classes" class="btn">クラスを見る</a>
     </section>
 
-    <!-- スタジオ紹介セクション (About) -->
     <section class="section" id="about">
-        <h2 class="section-title">Studio About</h2>
+        <h2 class="section-title reveal-fade-up">Studio About</h2>
         <div class="about-container">
-            <div class="about-text">
+            <div class="about-text reveal-fade-up delay-1">
                 <h3>ここは“未完成”を、”才能”に変える場所。</h3>
                 <p>
                     MIHATE ACADEMYは、本気でプロを目指すプロフェッショナルのためのアーティスト育成スタジオです。<br><br>
@@ -753,16 +977,15 @@
                     一人ひとりの個性を引き出し、確かな技術へと昇華させます。まだ未完成（MI）な才能を、ステージの果て（HATE）へ。
                 </p>
             </div>
-            <div class="about-img">
+            <div class="about-img reveal-fade-up delay-2">
                 <img src="img/logo.png" alt="Studio Inside">
             </div>
         </div>
     </section>
 
-    <!-- ニュースセクション -->
     <section class="section" id="news">
-        <h2 class="section-title">News</h2>
-        <ul class="news-list">
+        <h2 class="section-title reveal-fade-up">News</h2>
+        <ul class="news-list reveal-fade-up delay-1">
             <li class="news-item">
                 <span class="news-date">2026.05.20</span>
                 <span class="news-badge">Info</span>
@@ -771,9 +994,8 @@
         </ul>
     </section>
 
-    <!-- クラス紹介セクション -->
     <section class="section" id="classes">
-        <h2 class="section-title">Classes</h2>
+        <h2 class="section-title reveal-fade-up">Classes</h2>
         <div class="grid-container">
             <div class="grid-item">
                 <img src="img/class_01.jpg" alt="Dance" class="grid-item-img">
@@ -802,28 +1024,26 @@
         </div>
     </section>
 
-    <!-- 講師紹介セクション (Instructors - 1名特化) -->
     <section class="section" id="instructors">
-        <h2 class="section-title">Instructor</h2>
+        <h2 class="section-title reveal-fade-up">Instructor</h2>
         <div class="instructor-detail-container">
-            <!-- 左側：写真 -->
-            <div class="instructor-photo">
+            <div class="instructor-photo reveal-fade-up delay-1">
                 <img src="img/kamihate.jpg" alt="KAMIHATE">
             </div>
-            <!-- 右側：プロフィール＆経歴 -->
             <div class="instructor-profile">
-                <span class="role">VOCALIST / DANCER / LYRICIST</span>
-                <h3 class="name-ja">KAMIHATE</h3>
-                <p class="name-en">Kamihate</p>
-                
-                <p class="bio-text">
-                    Stray Kids準備生やMajor9練習生としてキャリアをスタート。サバイバルオーディション番組『MIXNINE』への出演やメジャーデビューを経て、本場の圧倒的なパフォーマンス力を体得する。<br>
-                    韓国での活動を基盤としつつも、アーティスト活動の枠を超え、JO1、INI、NCT 127、aespa、山田涼介など、日韓のトップを走るメジャーアーティストの作詞・作曲、ボーカルディレクション、コーラスを多数手がける。<br>
-                    ダンスのグルーヴを深く知るからこその歌唱アプローチと、時代を捉えるサウンドクリエイト能力を武器に、ボーカル・ダンス・楽曲制作のすべてを統括する次世代のトータルプロデューサー。
-                </p>
+                <div class="reveal-fade-up delay-2">
+                    <span class="role">VOCALIST / DANCER / LYRICIST</span>
+                    <h3 class="name-ja">KAMIHATE</h3>
+                    <p class="name-en">Kamihate</p>
+                    
+                    <p class="bio-text">
+                        Stray Kids準備生やMajor9練習生としてキャリアをスタート。サバイバルオーディション番組『MIXNINE』への出演やメジャーデビューを経て、本場の圧倒的なパフォーマンス力を体得する。<br>
+                        韓国での活動を基盤としつつも、アーティスト活動の枠を超え、JO1、INI、NCT 127、aespa、山田涼介など、日韓のトップを走るメジャーアーティストの作詞・作曲、ボーカルディレクション、コーラスを多数手がける。<br>
+                        ダンスのグルーヴを深く知るからこその歌唱アプローチと、時代を捉えるサウンドクリエイト能力を武器に、ボーカル・ダンス・楽曲制作のすべてを統括する次世代のトータルプロデューサー。
+                    </p>
+                </div>
 
-                <!-- 経歴・実績項目 -->
-                <div class="biography-block">
+                <div class="biography-block reveal-fade-up delay-3">
                     <h4>Biography & Works</h4>
                     <ul class="history-list">
                         <li>
@@ -896,9 +1116,8 @@
         </div>
     </section>
 
-    <!-- レッスン日程セクション (Schedule) -->
     <section class="section" id="schedule">
-        <h2 class="section-title">Weekly Schedule</h2>
+        <h2 class="section-title reveal-fade-up">Weekly Schedule</h2>
         <div class="schedule-table-wrap">
             <table class="schedule-table">
                 <thead>
@@ -910,21 +1129,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 10:00枠 -->
                     <tr>
                         <td class="schedule-time">10:00 - 13:00</td>
                         <td>-</td>
                         <td>-</td>
                         <td>Bクラス（練習生）<br><small>by KAMIHATE</small></td>
                     </tr>
-                    <!-- 18:00枠 -->
                     <tr>
                         <td class="schedule-time">18:00 - 19:30</td>
                         <td>アーティスト クラス<br><small>by KAMIHATE</small></td>
                         <td rowspan="2">Aクラス（練習生）<br><small>18:00 - 21:00 / by KAMIHATE</small></td>
                         <td rowspan="2">Cクラス（練習生）<br><small>18:00 - 21:00 / by KAMIHATE</small></td>
                     </tr>
-                    <!-- 19:30枠 -->
                     <tr>
                         <td class="schedule-time">19:30 - 21:00</td>
                         <td>作曲家 クラス<br><small>by KAMIHATE</small></td>
@@ -934,12 +1150,48 @@
         </div>
     </section>
 
-    <!-- お問い合わせ・追加動線セクション (Contact / SNS) -->
+    <section class="section-campaign">
+        <div class="campaign-container">
+            <div class="campaign-badges-wrap">
+                <span class="campaign-badge">PRE-OPEN CAMPAIGN</span>
+                <span class="campaign-badge highlight">期間限定：入会金無料</span>
+            </div>
+            
+            <h2 class="campaign-title reveal-fade-up delay-1">
+                <span>NEW GENERATION</span><br>
+                第1期生 プレミアムメンバー募集
+            </h2>
+
+            <div class="campaign-timeline reveal-fade-up delay-2">
+                <div class="timeline-step active">
+                    <span class="step-date">7/4</span>
+                    <span class="step-label">プレオープン</span>
+                    <span class="step-sub">体験レッスン受付開始</span>
+                </div>
+                <div class="timeline-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="timeline-step">
+                    <span class="step-date">9/4</span>
+                    <span class="step-label">グランドオープン</span>
+                    <span class="step-sub">1期生 本レッスン始動</span>
+                </div>
+            </div>
+
+            <p class="campaign-text">
+                MIHATE ACADEMYの歴史をここから共に創る、最初の才能を募ります。<br>
+                今だけの特別な一歩を、今だけの特別な特典とともに。<br>
+                まずは体験レッスンで、世界基準の環境とプロフェッショナルの指導を体感してください。
+            </p>
+            <div class="campaign-cta-wrap">
+                <a href="#contact" class="btn-campaign">体験レッスン・入会案内はこちら <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <p class="campaign-note ">※プレオープン期間の体験枠、および1期生の定員に達し次第、受付を締め切らせていただきます。</p>
+        </div>
+    </section>
+
     <section class="section" id="contact">
-        <h2 class="section-title">Contact & SNS</h2>
+        <h2 class="section-title reveal-fade-up">Contact & SNS</h2>
         <div class="contact-container">
-            <!-- LINE / お問い合わせ -->
-            <div class="contact-box">
+            <div class="contact-box reveal-fade-up delay-1">
                 <div>
                     <h3>Admission & Inquiry</h3>
                     <p>体験レッスンのご予約、入会に関するご質問、システムについてのお問い合わせは公式LINE、またはメールフォームよりお気軽にご連絡ください。</p>
@@ -949,8 +1201,7 @@
                 </div>
             </div>
 
-            <!-- Instagram / SNS -->
-            <div class="contact-box">
+            <div class="contact-box reveal-fade-up delay-2">
                 <div>
                     <h3>Official Instagram</h3>
                     <p>スタジオの日常、レッスン風景の動画、インストラクターによるワークショップ情報など、最新のモーメントを随時発信しています。</p>
@@ -962,28 +1213,22 @@
         </div>
     </section>
 
-    <!-- フッターエリア -->
     <footer>
         <div class="footer-inner">
-            
-            <!-- フッター上部: ロゴと丸型SNSアイコンリンク -->
             <div class="footer-top">
                 <div class="footer-logo">
                     <img src="img/logo_v2.png" alt="MIHATE ACADEMY">
                 </div>
                 <div class="footer-sns">
-                    <!-- Instagramアイコン -->
                     <a href="#" class="footer-sns-icon instagram" aria-label="Instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
-                    <!-- LINEアイコン -->
                     <a href="#" class="footer-sns-icon line" aria-label="LINE">
                         <i class="fa-brands fa-line"></i>
                     </a>
                 </div>
             </div>
 
-            <!-- フッターナビゲーション -->
             <nav class="footer-nav">
                 <ul>
                     <li><a href="#about">About</a></li>
@@ -995,43 +1240,63 @@
                 </ul>
             </nav>
 
-            <!-- フッター下部: 各種ポリシーと著作権・トップ戻る -->
             <div class="footer-bottom">
                 <div class="footer-sub-links">
                     <a href="#">プライバシーポリシー</a>
                     <a href="#">特定商取引法に基づく表記</a>
                 </div>
                 <p class="copyright">&copy; 2026 MIHATE ACADEMY. All Rights Reserved.</p>
-                <!-- ページトップへ戻るボタン -->
                 <a href="#" class="pagetop-btn" aria-label="ページトップへ戻る">
                     <i class="fa-solid fa-chevron-up"></i>
                 </a>
             </div>
-
         </div>
     </footer>
 
-    <!-- ハンバーガーメニュー制御用のJavaScriptを追加 -->
     <script>
+        // 1. ハンバーガーメニューの開閉制御
         const menuBtn = document.getElementById('js-menu-btn');
         const nav = document.getElementById('js-nav');
         const body = document.body;
         const navLinks = document.querySelectorAll('#js-nav a');
 
-        // メニューの開閉切り替え
         menuBtn.addEventListener('click', () => {
             menuBtn.classList.toggle('is-active');
             nav.classList.toggle('is-active');
-            body.classList.toggle('menu-open'); // 背景スクロール固定
+            body.classList.toggle('menu-open');
         });
 
-        // リンクをクリックした時にメニューを閉じる
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 menuBtn.classList.remove('is-active');
                 nav.classList.remove('is-active');
                 body.classList.remove('menu-open');
             });
+        });
+
+
+        // 2. スクロールアニメーション（ふわっと浮き上がる演出）の制御
+        // 画面の75%の位置を要素が通過したら発動するように設定（早めに気持ちよく表示される絶妙なバランス）
+        const revealCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // 一度表示されたら監視を終了（何度もパタパタ動いてチカチカするのを防ぎ、高級感を保つ）
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        const revealObserver = new IntersectionObserver(revealCallback, {
+            root: null,
+            rootMargin: '0px 0px -15% 0px', // 画面の下部から少し入ったところで動く
+            threshold: 0
+        });
+
+        // アニメーションさせたい要素をすべて自動収集して監視対象にする
+        const revealElements = document.querySelectorAll('.reveal-fade-up');
+        revealElements.forEach(element => {
+            revealObserver.observe(element);
         });
     </script>
 
