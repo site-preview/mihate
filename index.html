@@ -30,6 +30,11 @@
             overflow-x: hidden;
         }
 
+        /* ハンバーガーメニュー開閉時に背景スクロールを止めるクラス */
+        body.menu-open {
+            overflow: hidden;
+        }
+
         a {
             color: #ffffff;
             text-decoration: none;
@@ -40,22 +45,27 @@
             opacity: 0.7;
         }
 
-        /* ヘッダー */
+        /* ヘッダー（スクロール固定） */
         header {
             position: fixed;
             top: 0;
+            left: 0;
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 20px 50px;
             z-index: 100;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
+            /* スクロール時に背景が透けて文字が重ならないよう、少し暗めの背景を設定 */
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.7));
+            backdrop-filter: blur(5px); /* 背景を微かにぼかして視認性アップ */
+            transition: background 0.3s;
         }
 
         .logo {
             display: flex;
             align-items: center;
+            z-index: 110; /* ハンバーガーメニューより前面に */
         }
 
         .logo-img {
@@ -77,7 +87,30 @@
             letter-spacing: 1px;
         }
 
-        /* ヒーローセクション */
+        /* ハンバーガーボタン（デフォルトは非表示） */
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 110; /* メニューの前面に出す */
+            padding: 0;
+        }
+
+        .menu-btn span {
+            width: 100%;
+            height: 20px;
+            height: 2px;
+            background-color: #ffffff;
+            transition: all 0.3s ease;
+            transform-origin: left center;
+        }
+
+        /* ヒーローセクション（ヘッダーが固定された分の余白は不要） */
         .hero {
             position: relative;
             height: 100vh;
@@ -130,6 +163,8 @@
             padding: 120px 50px;
             max-width: 1400px;
             margin: 0 auto;
+            /* スムーススクロール時のヘッダー被り対策 */
+            scroll-margin-top: 80px; 
         }
 
         .section-title {
@@ -450,13 +485,11 @@
             color: #ffffff;
         }
 
-        /* ＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝
-           調整したフッター全体のデザイン
-        ＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝ */
+        /* フッター */
         footer {
-            background-color: #0d0d0d; /* ボディの完全な黒と区別できる洗練されたダークグレー */
+            background-color: #0d0d0d;
             padding: 80px 50px 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1); /* シャープで高級感のある極細の境界線 */
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-inner {
@@ -468,7 +501,6 @@
             gap: 40px;
         }
 
-        /* フッター上部：ロゴとSNS */
         .footer-top {
             width: 100%;
             display: flex;
@@ -496,14 +528,13 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background-color: #1a1a1a; /* 背景色に合わせて少し明るく */
+            background-color: #1a1a1a;
             border: 1px solid #2a2a2a;
             font-size: 20px;
             color: #ffffff;
             transition: all 0.3s ease;
         }
 
-        /* SNSアイコンホバー時のブランドカラー */
         .footer-sns-icon.instagram:hover {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
             border-color: transparent;
@@ -516,7 +547,6 @@
             transform: translateY(-3px);
         }
 
-        /* フッターナビゲーション */
         .footer-nav {
             width: 100%;
             border-top: 1px solid #1a1a1a;
@@ -543,7 +573,6 @@
             color: #ffffff;
         }
 
-        /* フッター下部：ポリシーとコピーライト */
         .footer-bottom {
             width: 100%;
             display: flex;
@@ -552,7 +581,7 @@
             flex-wrap: wrap;
             gap: 15px;
             font-size: 12px;
-            color: #666666; /* 可読性を保つため少しだけ明るく */
+            color: #666666;
         }
 
         .footer-sub-links {
@@ -568,7 +597,6 @@
             color: #aaaaaa;
         }
 
-        /* ページトップへ戻るボタン */
         .pagetop-btn {
             display: flex;
             justify-content: center;
@@ -608,10 +636,63 @@
         }
 
         @media (max-width: 768px) {
-            header { padding: 20px; }
-            nav { display: none; }
+            header { 
+                padding: 15px 20px; 
+            }
+            
+            /* スマホ時のハンバーガーボタン表示 */
+            .menu-btn {
+                display: flex;
+            }
+
+            /* 通常時はナビゲーションを画面外（右側）に隠す */
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: rgba(13, 13, 13, 0.98);
+                border-left: 1px solid #222222;
+                padding: 100px 40px 40px;
+                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                z-index: 105;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            nav ul li a {
+                font-size: 16px;
+                display: block;
+                padding: 10px 0;
+                border-bottom: 1px solid #1a1a1a;
+            }
+
+            /* ーーー ハンバーガーメニュー開閉時の制御（JSでクラスをトグル） ーーー */
+            
+            /* メニュー表示状態 */
+            nav.is-active {
+                right: 0;
+            }
+
+            /* 三本線のハニカム変形アニメーション */
+            .menu-btn.is-active span:nth-child(1) {
+                transform: rotate(45deg) translate(2px, -2px);
+            }
+            .menu-btn.is-active span:nth-child(2) {
+                opacity: 0;
+            }
+            .menu-btn.is-active span:nth-child(3) {
+                transform: rotate(-45deg) translate(2px, 2px);
+            }
+
+            /* ーーー コンテンツまわりの微調整 ーーー */
             .hero-title { font-size: 44px; }
-            .section { padding: 80px 20px; }
+            .section { padding: 80px 20px; scroll-margin-top: 70px; }
             .section-title { font-size: 28px; margin-bottom: 40px; }
             .news-item { flex-direction: column; gap: 8px; }
             .news-date { width: auto; }
@@ -630,9 +711,18 @@
     <!-- ヘッダーエリア -->
     <header id="top">
         <a href="#" class="logo">
-            <img src="img/logo.png" alt="MIHATE ACADEMY" class="logo-img">
+            <img src="img/logo_v2.png" alt="MIHATE ACADEMY" class="logo-img">
         </a>
-        <nav>
+        
+        <!-- ハンバーガーボタンを追加 -->
+        <button class="menu-btn" aria-label="メニューを開閉する" id="js-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- ナビゲーション（SP時は隠れてスライドインする構造に変更） -->
+        <nav id="js-nav">
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#news">News</a></li>
@@ -798,7 +888,7 @@
                         </li>
                         <li>
                             <span class="history-year">2026</span>
-                            <span class="history-content">aespa『Winter Blues』日本語歌詞（Japanese Lyrics）担当</span>
+                            <span class="history-content">aespa Winter『blue』日本語歌詞（Japanese Lyrics）担当</span>
                         </li>
                     </ul>
                 </div>
@@ -879,7 +969,7 @@
             <!-- フッター上部: ロゴと丸型SNSアイコンリンク -->
             <div class="footer-top">
                 <div class="footer-logo">
-                    <img src="img/logo.png" alt="MIHATE ACADEMY">
+                    <img src="img/logo_v2.png" alt="MIHATE ACADEMY">
                 </div>
                 <div class="footer-sns">
                     <!-- Instagramアイコン -->
@@ -913,13 +1003,37 @@
                 </div>
                 <p class="copyright">&copy; 2026 MIHATE ACADEMY. All Rights Reserved.</p>
                 <!-- ページトップへ戻るボタン -->
-                <a href="#top" class="pagetop-btn" aria-label="ページトップへ戻る">
+                <a href="#" class="pagetop-btn" aria-label="ページトップへ戻る">
                     <i class="fa-solid fa-chevron-up"></i>
                 </a>
             </div>
 
         </div>
     </footer>
+
+    <!-- ハンバーガーメニュー制御用のJavaScriptを追加 -->
+    <script>
+        const menuBtn = document.getElementById('js-menu-btn');
+        const nav = document.getElementById('js-nav');
+        const body = document.body;
+        const navLinks = document.querySelectorAll('#js-nav a');
+
+        // メニューの開閉切り替え
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('is-active');
+            nav.classList.toggle('is-active');
+            body.classList.toggle('menu-open'); // 背景スクロール固定
+        });
+
+        // リンクをクリックした時にメニューを閉じる
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('is-active');
+                nav.classList.remove('is-active');
+                body.classList.remove('menu-open');
+            });
+        });
+    </script>
 
 </body>
 </html>
