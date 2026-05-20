@@ -5,8 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MIHATE ACADEMY｜プロを目指す名古屋のボーカルスクール</title>
     
-    <!-- ここを追加：検索エンジンに登録されるのを防ぐ記述 -->
+    <!-- 検索エンジンに登録されるのを防ぐ記述 -->
     <meta name="robots" content="noindex, nofollow">
+
+    <!-- Font Awesome (SNSアイコン用) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         /* 全体のリセットと共通スタイル */
@@ -15,6 +18,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth; /* スムーススクロール */
         }
 
         body {
@@ -43,37 +50,34 @@
             align-items: center;
             padding: 20px 50px;
             z-index: 100;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+            background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0));
         }
 
         .logo {
-            /* font-size: 24px; */
-            /* font-weight: 900; */
-            /* letter-spacing: 2px; */
-            display: flex; /* To allow vertical alignment of image */
-            align-items: center; /* Vertically align image within anchor */
+            display: flex;
+            align-items: center;
         }
 
         .logo-img {
-            height: 40px; /* Adjust as needed */
-            width: auto; /* Maintain aspect ratio */
+            height: 40px;
+            width: auto;
             object-fit: contain;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
         }
 
         nav ul li a {
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 1px;
         }
 
-        /* ヒーローセクション（メインビジュアル） */
+        /* ヒーローセクション */
         .hero {
             position: relative;
             height: 100vh;
@@ -82,9 +86,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), 
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
                         url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=2070') no-repeat center center/cover;
-            /* ↑現在はダミー画像です。ここを動画（videoタグ）に変えると1MILLION風になります */
         }
 
         .hero-title {
@@ -113,6 +116,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             transition: all 0.3s;
+            cursor: pointer;
         }
 
         .btn:hover {
@@ -123,7 +127,7 @@
 
         /* コンテンツ共通 */
         .section {
-            padding: 100px 50px;
+            padding: 120px 50px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -132,16 +136,76 @@
             font-size: 36px;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             letter-spacing: 1px;
             border-left: 5px solid #ffffff;
             padding-left: 15px;
         }
 
-        /* グリッドセクション（クラス・ダンサー紹介用） */
+        /* スタジオ紹介 (About) */
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .about-text p {
+            color: #cccccc;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            border: 1px solid #222222;
+        }
+
+        /* ニュースセクション */
+        .news-list {
+            list-style: none;
+        }
+
+        .news-item {
+            display: flex;
+            padding: 20px 0;
+            border-bottom: 1px solid #222222;
+            font-size: 15px;
+        }
+
+        .news-date {
+            width: 150px;
+            color: #888888;
+            font-weight: 600;
+        }
+
+        .news-badge {
+            background-color: #222222;
+            font-size: 11px;
+            padding: 2px 8px;
+            font-weight: 700;
+            margin-right: 20px;
+            height: fit-content;
+            text-transform: uppercase;
+        }
+
+        .news-text {
+            flex: 1;
+            color: #dddddd;
+        }
+
+        /* クラス紹介グリッド */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -169,14 +233,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.6;
+            opacity: 0.5;
             z-index: 1;
             transition: transform 0.5s, opacity 0.5s;
         }
 
         .grid-item:hover .grid-item-img {
             transform: scale(1.05);
-            opacity: 0.8;
+            opacity: 0.7;
         }
 
         .grid-item-content {
@@ -185,7 +249,7 @@
         }
 
         .grid-item-tag {
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             background-color: #ffffff;
             color: #000000;
@@ -196,43 +260,386 @@
         }
 
         .grid-item-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 50px;
         }
 
-        /* フッター */
-        footer {
-            background-color: #111111;
-            padding: 50px;
-            text-align: center;
+        .grid-item-sub {
+            font-size: 13px;
+            color: #aaaaaa;
+            margin-top: 5px;
+        }
+
+        /* 講師詳細セクション（1名特化型レイアウト） */
+        .instructor-detail-container {
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .instructor-photo {
+            position: relative;
+            border: 1px solid #222222;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+        }
+
+        .instructor-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instructor-profile .role {
             font-size: 12px;
-            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #888888;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .instructor-profile .name-ja {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .instructor-profile .name-en {
+            font-size: 16px;
+            font-weight: 600;
+            color: #aaaaaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+        }
+
+        .instructor-profile .bio-text {
+            font-size: 15px;
+            color: #dddddd;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .biography-block {
             border-top: 1px solid #222222;
+            padding-top: 30px;
+        }
+
+        .biography-block h4 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .history-list {
+            list-style: none;
+        }
+
+        .history-list li {
+            display: flex;
+            margin-bottom: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .history-year {
+            width: 90px;
+            color: #888888;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .history-content {
+            color: #cccccc;
+        }
+
+        /* レッスン日程（スケジュールテーブル） */
+        .schedule-table-wrap {
+            overflow-x: auto;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            min-width: 600px;
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 20px;
+            border-bottom: 1px solid #222222;
+        }
+
+        .schedule-table th {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #888888;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        .schedule-time {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        /* コンタクト・SNSセクション */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-box {
+            background-color: #111111;
+            padding: 40px;
+            border: 1px solid #222222;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-box h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .contact-box p {
+            color: #aaaaaa;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn-block {
+            display: block;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-line {
+            background-color: #06C755; /* LINEカラー */
+            border-color: #06C755;
+            color: #ffffff;
+        }
+        .btn-line:hover {
+            background-color: transparent;
+            color: #06C755;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border: none;
+        }
+        .btn-instagram:hover {
+            opacity: 0.8;
+            color: #ffffff;
+        }
+
+        /* ＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝
+           調整したフッター全体のデザイン
+        ＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝ー＝ */
+        footer {
+            background-color: #0d0d0d; /* ボディの完全な黒と区別できる洗練されたダークグレー */
+            padding: 80px 50px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1); /* シャープで高級感のある極細の境界線 */
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* フッター上部：ロゴとSNS */
+        .footer-top {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-logo img {
+            height: 35px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-sns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-sns-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #1a1a1a; /* 背景色に合わせて少し明るく */
+            border: 1px solid #2a2a2a;
+            font-size: 20px;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        /* SNSアイコンホバー時のブランドカラー */
+        .footer-sns-icon.instagram:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        .footer-sns-icon.line:hover {
+            background-color: #06C755;
+            border-color: #06C755;
+            transform: translateY(-3px);
+        }
+
+        /* フッターナビゲーション */
+        .footer-nav {
+            width: 100%;
+            border-top: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 25px 0;
+        }
+
+        .footer-nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav ul li a {
+            font-size: 13px;
+            font-weight: 500;
+            color: #aaaaaa;
+            letter-spacing: 1px;
+        }
+
+        .footer-nav ul li a:hover {
+            color: #ffffff;
+        }
+
+        /* フッター下部：ポリシーとコピーライト */
+        .footer-bottom {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 12px;
+            color: #666666; /* 可読性を保つため少しだけ明るく */
+        }
+
+        .footer-sub-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-sub-links a {
+            color: #666666;
+        }
+
+        .footer-sub-links a:hover {
+            color: #aaaaaa;
+        }
+
+        /* ページトップへ戻るボタン */
+        .pagetop-btn {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: #888888;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .pagetop-btn:hover {
+            color: #ffffff;
+            border-color: #ffffff;
         }
 
         /* レスポンシブ（スマホ対応） */
+        @media (max-width: 960px) {
+            .instructor-detail-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .instructor-photo {
+                max-width: 400px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .about-container, .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
         @media (max-width: 768px) {
             header { padding: 20px; }
-            nav { display: none; } /* スマホ時は簡易化のためメニュー非表示 */
-            .hero-title { font-size: 40px; }
-            .section { padding: 60px 20px; }
+            nav { display: none; }
+            .hero-title { font-size: 44px; }
+            .section { padding: 80px 20px; }
+            .section-title { font-size: 28px; margin-bottom: 40px; }
+            .news-item { flex-direction: column; gap: 8px; }
+            .news-date { width: auto; }
+            
+            /* フッターレスポンシブ */
+            footer { padding: 60px 20px 30px; }
+            .footer-top { flex-direction: column; text-align: center; }
+            .footer-nav ul { gap: 20px 30px; justify-content: center; }
+            .footer-bottom { flex-direction: column-reverse; text-align: center; gap: 20px; }
+            .footer-sub-links { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
     <!-- ヘッダーエリア -->
-    <header>
+    <header id="top">
         <a href="#" class="logo">
-            <img src="logo.png" alt="STUDIO X Logo" class="logo-img">
+            <img src="img/logo.png" alt="MIHATE ACADEMY" class="logo-img">
         </a>
         <nav>
             <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Instructors</a></li>
-                <li><a href="#">Schedule</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#instructors">Instructor</a></li>
+                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -240,47 +647,278 @@
     <!-- メインビジュアル（ヒーローセクション） -->
     <section class="hero">
         <h1 class="hero-title">MIHATE<br>ACADEMY</h1>
-        <p class="hero-subtitle">BOCAL & DANCE STUDIO IN NAGOYA</p>
-        <a href="#" class="btn">クラスを見る</a>
+        <p class="hero-subtitle">VOCAL & DANCE STUDIO IN NAGOYA</p>
+        <a href="#classes" class="btn">クラスを見る</a>
     </section>
 
-    <!-- ダンサー / クラス紹介セクション -->
-    <section class="section">
-        <h2 class="section-title">Featured Classes</h2>
-        
+    <!-- スタジオ紹介セクション (About) -->
+    <section class="section" id="about">
+        <h2 class="section-title">Studio About</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <h3>ここは“未完成”を、”才能”に変える場所。</h3>
+                <p>
+                    MIHATE ACADEMYは、本気でプロを目指すプロフェッショナルのためのアーティスト育成スタジオです。<br><br>
+                    第一線で活躍する実力派インストラクターが、本格的なボーカルレッスンをはじめ、自らの世界を形にする作曲、ステージで映えるアーティストとしての魅せ方、表現の幅を広げるダンスの基礎まで、プロに必要なすべてをトータルで指導します。<br><br>
+                    一人ひとりの個性を引き出し、確かな技術へと昇華させます。まだ未完成（MI）な才能を、ステージの果て（HATE）へ。
+                </p>
+            </div>
+            <div class="about-img">
+                <img src="img/logo.png" alt="Studio Inside">
+            </div>
+        </div>
+    </section>
+
+    <!-- ニュースセクション -->
+    <section class="section" id="news">
+        <h2 class="section-title">News</h2>
+        <ul class="news-list">
+            <li class="news-item">
+                <span class="news-date">2026.05.20</span>
+                <span class="news-badge">Info</span>
+                <div class="news-text"><a href="#">MIHATE ACADEMY 公式ウェブサイトがプレオープンしました。</a></div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- クラス紹介セクション -->
+    <section class="section" id="classes">
+        <h2 class="section-title">Classes</h2>
         <div class="grid-container">
-            <!-- アイテム 1 -->
             <div class="grid-item">
-                <img src="kamihate.jpg" alt="Dance" class="grid-item-img">
+                <img src="img/class_01.jpg" alt="Dance" class="grid-item-img">
                 <div class="grid-item-content">
-                    <span class="grid-item-tag">Choreography</span>
-                    <h3 class="grid-item-title">Advanced HipHop<br>by Takuya</h3>
+                    <span class="grid-item-tag">アーティスト育成クラス</span>
+                    <h3 class="grid-item-title">DANCE / VOCAL / CREATE</h3>
+                    <p class="grid-item-sub">by KAMIHATE</p>
                 </div>
             </div>
-
-            <!-- アイテム 2 -->
             <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?q=80&w=600" alt="Dance" class="grid-item-img">
+                <img src="img/class_01.jpg" alt="Dance" class="grid-item-img">
                 <div class="grid-item-content">
-                    <span class="grid-item-tag">Beginner</span>
-                    <h3 class="grid-item-title">Basic Groove<br>by Minami</h3>
+                    <span class="grid-item-tag">作曲家育成クラス</span>
+                    <h3 class="grid-item-title">LYRIC / CREATE</h3>
+                    <p class="grid-item-sub">by KAMIHATE</p>
                 </div>
             </div>
-
-            <!-- アイテム 3 -->
             <div class="grid-item">
-                <img src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?q=80&w=600" alt="Dance" class="grid-item-img">
+                <img src="img/class_01.jpg" alt="Vocal" class="grid-item-img">
                 <div class="grid-item-content">
-                    <span class="grid-item-tag">K-POP</span>
-                    <h3 class="grid-item-title">K-POP Cover<br>by Yuka</h3>
+                    <span class="grid-item-tag">練習生クラス</span>
+                    <h3 class="grid-item-title">DANCE / VOCAL</h3>
+                    <p class="grid-item-sub">by KAMIHATE</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- フッター -->
+    <!-- 講師紹介セクション (Instructors - 1名特化) -->
+    <section class="section" id="instructors">
+        <h2 class="section-title">Instructor</h2>
+        <div class="instructor-detail-container">
+            <!-- 左側：写真 -->
+            <div class="instructor-photo">
+                <img src="img/kamihate.jpg" alt="KAMIHATE">
+            </div>
+            <!-- 右側：プロフィール＆経歴 -->
+            <div class="instructor-profile">
+                <span class="role">VOCALIST / DANCER / LYRICIST</span>
+                <h3 class="name-ja">KAMIHATE</h3>
+                <p class="name-en">Kamihate</p>
+                
+                <p class="bio-text">
+                    Stray Kids準備生やMajor9練習生としてキャリアをスタート。サバイバルオーディション番組『MIXNINE』への出演やメジャーデビューを経て、本場の圧倒的なパフォーマンス力を体得する。<br>
+                    韓国での活動を基盤としつつも、アーティスト活動の枠を超え、JO1、INI、NCT 127、aespa、山田涼介など、日韓のトップを走るメジャーアーティストの作詞・作曲、ボーカルディレクション、コーラスを多数手がける。<br>
+                    ダンスのグルーヴを深く知るからこその歌唱アプローチと、時代を捉えるサウンドクリエイト能力を武器に、ボーカル・ダンス・楽曲制作のすべてを統括する次世代のトータルプロデューサー。
+                </p>
+
+                <!-- 経歴・実績項目 -->
+                <div class="biography-block">
+                    <h4>Biography & Works</h4>
+                    <ul class="history-list">
+                        <li>
+                            <span class="history-year">2016</span>
+                            <span class="history-content">「Stray Kids」準備生</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2017</span>
+                            <span class="history-content">「Major9」練習生 / JTBCサバイバルオーディション番組『MIXNINE』出演</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2019</span>
+                            <span class="history-content">Woody『이 노래가 클럽에서 나온다면（Fire Up）』バックダンサー</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2020</span>
+                            <span class="history-content">ダンス＆ボーカルデュオ「XRO（ジェロ）」としてメジャーデビュー</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2022</span>
+                            <span class="history-content">INI『CALL 119』コーラス担当 / 『Password』作詞</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2022</span>
+                            <span class="history-content">NCT 127『Colors』ガイドボーカル・ボーカルディレクション・コーラス担当 / 『Sunny Road』ボーカルディレクション・コーラス担当</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2022</span>
+                            <span class="history-content">『SMTOWN LIVE』阿修羅ちゃん カバーパフォーマンス ボーカルディレクション・コーラス担当</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2023</span>
+                            <span class="history-content">JO1『Venus』作詞・作曲 / CRAXY『FINGER FLICK』作詞・作曲</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2023</span>
+                            <span class="history-content">YESUNG『束の間の恋』『Make it summer』コーラス担当 / 『Fruit of Love』ガイドボーカル</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2023</span>
+                            <span class="history-content">NCT WISH『WEGO』コーラス担当 / 『Sail Away』ガイドボーカル</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2024</span>
+                            <span class="history-content">YUTA（NCT 127）『Butterfly (Depth ver.)』作詞・作曲</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2025</span>
+                            <span class="history-content">山田涼介『CARNIVAL』『HUSTLER』作詞</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2025</span>
+                            <span class="history-content">CRAVITY『EVERYDAY』作詞・作曲</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2025</span>
+                            <span class="history-content">Travis Japan『「幸せ」と「ありがとう」』作曲</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2026</span>
+                            <span class="history-content">NAZE『Wanderlust』ボーカルディレクション・コーラス担当 / 『HELLO』『Isn't She Lovely』ボーカルディレクション</span>
+                        </li>
+                        <li>
+                            <span class="history-year">2026</span>
+                            <span class="history-content">aespa『Winter Blues』日本語歌詞（Japanese Lyrics）担当</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- レッスン日程セクション (Schedule) -->
+    <section class="section" id="schedule">
+        <h2 class="section-title">Weekly Schedule</h2>
+        <div class="schedule-table-wrap">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Thursday（木）</th>
+                        <th>Friday（金）</th>
+                        <th>Saturday（土）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 10:00枠 -->
+                    <tr>
+                        <td class="schedule-time">10:00 - 13:00</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>Bクラス（練習生）<br><small>by KAMIHATE</small></td>
+                    </tr>
+                    <!-- 18:00枠 -->
+                    <tr>
+                        <td class="schedule-time">18:00 - 19:30</td>
+                        <td>アーティスト クラス<br><small>by KAMIHATE</small></td>
+                        <td rowspan="2">Aクラス（練習生）<br><small>18:00 - 21:00 / by KAMIHATE</small></td>
+                        <td rowspan="2">Cクラス（練習生）<br><small>18:00 - 21:00 / by KAMIHATE</small></td>
+                    </tr>
+                    <!-- 19:30枠 -->
+                    <tr>
+                        <td class="schedule-time">19:30 - 21:00</td>
+                        <td>作曲家 クラス<br><small>by KAMIHATE</small></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- お問い合わせ・追加動線セクション (Contact / SNS) -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Contact & SNS</h2>
+        <div class="contact-container">
+            <!-- LINE / お問い合わせ -->
+            <div class="contact-box">
+                <div>
+                    <h3>Admission & Inquiry</h3>
+                    <p>体験レッスンのご予約、入会に関するご質問、システムについてのお問い合わせは公式LINE、またはメールフォームよりお気軽にご連絡ください。</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-block btn-line">公式LINEを追加して質問する</a>
+                </div>
+            </div>
+
+            <!-- Instagram / SNS -->
+            <div class="contact-box">
+                <div>
+                    <h3>Official Instagram</h3>
+                    <p>スタジオの日常、レッスン風景の動画、インストラクターによるワークショップ情報など、最新のモーメントを随時発信しています。</p>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-block btn-instagram">Instagramをフォローする</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッターエリア -->
     <footer>
-        <p>&copy; 2026 MIHATE ACADEMY. All Rights Reserved.</p>
+        <div class="footer-inner">
+            
+            <!-- フッター上部: ロゴと丸型SNSアイコンリンク -->
+            <div class="footer-top">
+                <div class="footer-logo">
+                    <img src="img/logo.png" alt="MIHATE ACADEMY">
+                </div>
+                <div class="footer-sns">
+                    <!-- Instagramアイコン -->
+                    <a href="#" class="footer-sns-icon instagram" aria-label="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <!-- LINEアイコン -->
+                    <a href="#" class="footer-sns-icon line" aria-label="LINE">
+                        <i class="fa-brands fa-line"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- フッターナビゲーション -->
+            <nav class="footer-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#classes">Classes</a></li>
+                    <li><a href="#instructors">Instructor</a></li>
+                    <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- フッター下部: 各種ポリシーと著作権・トップ戻る -->
+            <div class="footer-bottom">
+                <div class="footer-sub-links">
+                    <a href="#">プライバシーポリシー</a>
+                    <a href="#">特定商取引法に基づく表記</a>
+                </div>
+                <p class="copyright">&copy; 2026 MIHATE ACADEMY. All Rights Reserved.</p>
+                <!-- ページトップへ戻るボタン -->
+                <a href="#top" class="pagetop-btn" aria-label="ページトップへ戻る">
+                    <i class="fa-solid fa-chevron-up"></i>
+                </a>
+            </div>
+
+        </div>
     </footer>
 
 </body>
