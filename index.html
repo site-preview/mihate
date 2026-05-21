@@ -8,1075 +8,8 @@
     <meta name="robots" content="noindex, nofollow">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        /* 全体のリセットと共通スタイル */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth; /* スムーススクロール */
-        }
-
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            overflow-x: hidden;
-        }
-
-        /* ハンバーガーメニュー開閉時に背景スクロールを止めるクラス */
-        body.menu-open {
-            overflow: hidden;
-        }
-
-        a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        a:hover {
-            opacity: 0.7;
-        }
-
-        /* ヘッダー（スクロール固定） */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            z-index: 100;
-            /* スクロール時に背景が透けて文字が重ならないよう、少し暗めの背景を設定 */
-            background: linear-gradient(to bottom, rgba(0,0,0,0.95), rgba(0,0,0,0.7));
-            backdrop-filter: blur(5px); /* 背景を微かにぼかして視認性アップ */
-            transition: background 0.3s;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            z-index: 110; /* ハンバーガーメニューより前面に */
-        }
-
-        .logo-img {
-            height: 40px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav ul li a {
-            font-size: 13px;
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        /* ハンバーガーボタン（デフォルトは非表示） */
-        .menu-btn {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 30px;
-            height: 20px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            z-index: 110; /* メニューの前面に出す */
-            padding: 0;
-        }
-
-        .menu-btn span {
-            width: 100%;
-            height: 2px;
-            background-color: #ffffff;
-            transition: all 0.3s ease;
-            transform-origin: left center;
-        }
-
-        /* ヒーローセクション（ヘッダーが固定された分の余白は不要） */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=2070') no-repeat center center/cover;
-        }
-
-        .hero-title {
-            font-size: 80px;
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero-subtitle {
-            font-size: 18px;
-            letter-spacing: 4px;
-            margin-bottom: 40px;
-            color: #cccccc;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            border: 2px solid #ffffff;
-            background: transparent;
-            color: #ffffff;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .btn:hover {
-            background-color: #ffffff;
-            color: #000000;
-            opacity: 1;
-        }
-
-        /* コンテンツ共通 */
-        .section {
-            padding: 120px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
-            /* スムーススクロール時のヘッダー被り対策 */
-            scroll-margin-top: 80px; 
-        }
-
-        .section-title {
-            font-size: 36px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 60px;
-            letter-spacing: 1px;
-            border-left: 5px solid #ffffff;
-            padding-left: 15px;
-        }
-
-        /* スタジオ紹介 (About) */
-        .about-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .about-text p {
-            color: #cccccc;
-            line-height: 1.8;
-            font-size: 15px;
-        }
-
-        .studio-note {
-            display: block;
-            font-size: 12px;
-            color: #888888; /* 落ち着いたグレー */
-            line-height: 1.6;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #222222; /* 境界線をうっすら点線で入れる */
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            border: 1px solid #222222;
-        }
-
-        /* ニュースセクション */
-        .news-list {
-            list-style: none;
-        }
-
-        .news-item {
-            display: flex;
-            padding: 20px 0;
-            border-bottom: 1px solid #222222;
-            font-size: 15px;
-        }
-
-        .news-date {
-            width: 150px;
-            color: #888888;
-            font-weight: 600;
-        }
-
-        .news-badge {
-            background-color: #222222;
-            font-size: 11px;
-            padding: 2px 8px;
-            font-weight: 700;
-            margin-right: 20px;
-            height: fit-content;
-            text-transform: uppercase;
-        }
-
-        .news-text {
-            flex: 1;
-            color: #dddddd;
-        }
-
-        /* クラス紹介グリッド */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .grid-item {
-            position: relative;
-            overflow: hidden;
-            background-color: #111111;
-            aspect-ratio: 16 / 10; /* ← 3 / 4（縦長）から 16 / 10（上品な横長）に変更して高さを縮小 */
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;         /* 余白を少しコンパクトに */
-            border: 1px solid #222222;
-            transition: border-color 0.3s;
-        }
-
-        .grid-item:hover {
-            border-color: #ffffff;
-        }
-
-        .grid-item-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.5;
-            z-index: 1;
-            transition: transform 0.5s, opacity 0.5s;
-        }
-
-        .grid-item:hover .grid-item-img {
-            transform: scale(1.05);
-            opacity: 0.7;
-        }
-
-        .grid-item-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .grid-item-tag {
-            font-size: 11px;
-            text-transform: uppercase;
-            background-color: #ffffff;
-            color: #000000;
-            padding: 3px 8px;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .grid-item-title {
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .grid-item-sub {
-            font-size: 13px;
-            color: #aaaaaa;
-            margin-top: 5px;
-        }
-
-        /* 講師詳細セクション（1名特化型レイアウト） */
-        .instructor-detail-container {
-            display: grid;
-            grid-template-columns: 2fr 3fr;
-            gap: 60px;
-            align-items: start;
-        }
-
-        /* ーーー グランドオープンの枠をキラッと光らせる演出 ーーー */
-        .timeline-step.shining-step {
-            border-color: #c9a063; /* 枠を最初からゴールドにしておく */
-            overflow: hidden;      /* はみ出た光を隠す */
-        }
-
-        /* 擬似要素で白い光の筋を作る */
-        .timeline-step.shining-step::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(
-                to right, 
-                rgba(255, 255, 255, 0) 0%, 
-                rgba(201, 160, 99, 0.3) 50%, /* ほのかにゴールド混じりの光 */
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: skewX(-25deg); /* 光を斜めにする */
-            animation: cardShine 3s infinite linear; /* 4秒ごとにループ */
-        }
-
-        /* 光が左から右へ走り抜けるアニメーション */
-        @keyframes cardShine {
-            0% { left: -100%; }
-            15% { left: 150%; }  /* スッと素早く通り抜ける */
-            100% { left: 150%; } /* 残りの時間は待機（メリハリをつける） */
-        }
-
-        .instructor-photo {
-            position: relative;
-            border: 1px solid #222222;
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-        }
-
-        .instructor-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* ーーー スタジオアクセスセクション ーーー */
-        .access-container {
-            display: grid;
-            grid-template-columns: 2fr 3fr; /* 左を少し狭く、右のマップを広く */
-            gap: 60px;
-            align-items: start;
-        }
-
-        .access-info h3 {
-            font-size: 26px;
-            font-weight: 800;
-            color: #c9a063; /* ゴールド */
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .studio-address {
-            font-size: 15px;
-            color: #ffffff;
-            line-height: 1.8;
-        }
-        .studio-address i {
-            color: #c9a063;
-            margin-right: 5px;
-        }
-
-        .access-route-block {
-            margin-top: 35px;
-            border-top: 1px solid #222222;
-            padding-top: 25px;
-        }
-
-        .access-route-block h4 {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ffffff;
-            letter-spacing: 1px;
-        }
-        .access-route-block h4 i {
-            color: #888888;
-            margin-right: 5px;
-        }
-
-        .route-list {
-            list-style: none;
-        }
-        .route-list li {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 12px;
-            font-size: 14px;
-        }
-        .station-name {
-            font-weight: 700;
-            color: #dddddd;
-        }
-        .route-detail {
-            color: #888888;
-            margin-top: 2px;
-        }
-
-        .business-hours {
-            font-size: 14px;
-            color: #cccccc;
-            line-height: 1.6;
-        }
-        .business-hours small {
-            color: #666666;
-            font-size: 11px;
-        }
-
-        /* マップの枠（デザイン統一） */
-        .access-map {
-            border: 1px solid #222222;
-            background-color: #111111;
-            padding: 10px;
-            transition: border-color 0.3s;
-        }
-        .access-map:hover {
-            border-color: #c9a063; /* ホバーでゴールドに光る */
-        }
-        .map-placeholder {
-            width: 100%;
-            aspect-ratio: 16 / 10; /* パソコンで見た時に程よい横長になる比率 */
-            background-color: #000;
-        }
-        /* マップの色味をサイトの黒ベースに馴染ませるフィルター（お好みで外してもOK） */
-        .map-placeholder iframe {
-            filter: grayscale(1) invert(0.9) contrast(1.2); 
-        }
-
-        /* スマホ・タブレット用のレスポンシブ対応 */
-        @media (max-width: 960px) {
-            .access-container {
-                grid-template-columns: 1fr; /* 縦並びにする */
-                gap: 40px;
-            }
-            .map-placeholder {
-                aspect-ratio: 4 / 3; /* スマホでは少し正方形に近くして見やすく */
-            }
-        }
-
-        .instructor-profile .role {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888888;
-            font-weight: 700;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .instructor-profile .name-ja {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .instructor-profile .name-en {
-            font-size: 16px;
-            font-weight: 600;
-            color: #aaaaaa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-        }
-
-        .instructor-profile .bio-text {
-            font-size: 15px;
-            color: #dddddd;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .biography-block {
-            border-top: 1px solid #222222;
-            padding-top: 30px;
-        }
-
-        .biography-block h4 {
-            font-size: 16px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .history-list {
-            list-style: none;
-        }
-
-        .history-list li {
-            display: flex;
-            margin-bottom: 15px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .history-year {
-            width: 90px;
-            color: #888888;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .history-content {
-            color: #cccccc;
-        }
-
-        /* レッスン日程（スケジュールテーブル） */
-        .schedule-table-wrap {
-            overflow-x: auto;
-        }
-
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            min-width: 600px;
-        }
-
-        .schedule-table th, .schedule-table td {
-            padding: 20px;
-            border-bottom: 1px solid #222222;
-        }
-
-        .schedule-table th {
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #888888;
-            font-size: 13px;
-            letter-spacing: 1px;
-        }
-
-        .schedule-time {
-            font-weight: 600;
-            color: #ffffff;
-        }
-
-        /* コンタクト・SNSセクション */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .contact-box {
-            background-color: #111111;
-            padding: 40px;
-            border: 1px solid #222222;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .contact-box h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            font-weight: 700;
-         }
-
-        .contact-box p {
-            color: #aaaaaa;
-            font-size: 14px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        .cta-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .btn-block {
-            display: block;
-            text-align: center;
-            width: 100%;
-        }
-
-        .btn-line {
-            background-color: #06C755; /* LINEカラー */
-            border-color: #06C755;
-            color: #ffffff;
-        }
-        .btn-line:hover {
-            background-color: transparent;
-            color: #06C755;
-        }
-
-        .btn-instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            border: none;
-        }
-        .btn-instagram:hover {
-            opacity: 0.8;
-            color: #ffffff;
-        }
-
-        /* フッター */
-        footer {
-            background-color: #0d0d0d;
-            padding: 80px 50px 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .footer-inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .footer-top {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-logo img {
-            height: 35px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .footer-sns {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-sns-icon {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background-color: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            font-size: 20px;
-            color: #ffffff;
-            transition: all 0.3s ease;
-        }
-
-        .footer-sns-icon.instagram:hover {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            border-color: transparent;
-            transform: translateY(-3px);
-        }
-
-        .footer-sns-icon.line:hover {
-            background-color: #06C755;
-            border-color: #06C755;
-            transform: translateY(-3px);
-        }
-
-        .footer-nav {
-            width: 100%;
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
-            padding: 25px 0;
-        }
-
-        .footer-nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .footer-nav ul li a {
-            font-size: 13px;
-            font-weight: 500;
-            color: #aaaaaa;
-            letter-spacing: 1px;
-        }
-
-        .footer-nav ul li a:hover {
-            color: #ffffff;
-        }
-
-        .footer-bottom {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            font-size: 12px;
-            color: #666666;
-        }
-
-        .footer-sub-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .footer-sub-links a {
-            color: #666666;
-        }
-
-        .footer-sub-links a:hover {
-            color: #aaaaaa;
-        }
-
-        .pagetop-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background-color: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            color: #888888;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-
-        .pagetop-btn:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-
-        /* 1期生募集 特設キャンペーンブース */
-        .section-campaign {
-            padding: 80px 50px;
-            max-width: 1400px;
-            margin: 40px auto;
-            position: relative;
-        }
-
-        .campaign-container {
-            background: linear-gradient(135deg, #161616 0%, #0a0a0a 100%);
-            border: 1px solid #c9a063; /* 上品なゴールドの細枠 */
-            padding: 60px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        /* 背景に薄く光の演出 */
-        .campaign-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(201,160,99,0.05) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .campaign-badges-wrap {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-
-        .campaign-badge {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #c9a063;
-            border: 1px solid #c9a063;
-            padding: 4px 12px;
-            text-transform: uppercase;
-        }
-
-        .campaign-badge.highlight {
-            background-color: #c9a063;
-            color: #000000;
-        }
-
-        .campaign-title {
-            font-size: 32px;
-            font-weight: 800;
-            line-height: 1.4;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
-        }
-
-        .campaign-title span {
-            font-size: 14px;
-            color: #888888;
-            font-weight: 600;
-            letter-spacing: 4px;
-        }
-
-        /* スケジュールタイムラインのスタイル */
-        .campaign-timeline {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            max-width: 800px;
-            margin: 0 auto 35px;
-        }
-
-        .timeline-step {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid #222222;
-            padding: 20px 15px;
-            position: relative;
-        }
-
-        .timeline-step.active {
-            border-color: #c9a063;
-            background: rgba(201, 160, 99, 0.05);
-        }
-
-        .step-date {
-            font-size: 18px;
-            font-weight: 800;
-            color: #c9a063;
-            display: block;
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        .timeline-step.active .step-date {
-            color: #ffffff;
-            background-color: #c9a063;
-            color: #000000;
-            display: inline-block;
-            padding: 2px 8px;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .step-label {
-            font-size: 14px;
-            font-weight: 700;
-            color: #ffffff;
-            display: block;
-        }
-
-        .step-sub {
-            font-size: 11px;
-            color: #888888;
-            margin-top: 4px;
-            display: block;
-        }
-
-        .timeline-arrow {
-            color: #444444;
-            font-size: 18px;
-        }
-
-        .campaign-text {
-            font-size: 15px;
-            color: #cccccc;
-            line-height: 1.8;
-            max-width: 700px;
-            margin: 0 auto 35px;
-        }
-
-        .campaign-cta-wrap {
-            margin-bottom: 20px;
-        }
-
-        /* プレミアム感のある輝くボタン */
-        .btn-campaign {
-            display: inline-block;
-            padding: 18px 50px;
-            background: #ffffff;
-            color: #000000;
-            font-weight: 800;
-            letter-spacing: 2px;
-            font-size: 15px;
-            border: 1px solid #ffffff;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        /* ボタンを通り抜ける光のエフェクト */
-        .btn-campaign::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            animation: shine 3.5s infinite linear;
-        }
-
-        .btn-campaign i {
-            margin-left: 8px;
-            transition: transform 0.3s ease;
-        }
-        .btn-campaign:hover {
-            opacity: 1;
-            background: transparent;
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-
-        .btn-campaign:hover i {
-            transform: translateX(5px);
-        }
-
-        .campaign-note {
-            font-size: 12px;
-            color: #666666;
-        }
-
-        /* 光が走るアニメーションキーフレーム */
-        @keyframes shine {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
-        }
-
-
-        /* ーーー ここからスクロールアニメーション（高級感を演出） ーーー */
-
-        /* 初期状態：すべてのセクションタイトルやカード、テキストを透明にして少し下に配置 */
-        .reveal-fade-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), 
-                        transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-
-        /* スクロールして画面内に入った時に付与されるクラス */
-        .reveal-fade-up.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* 順番に（ディレイを持って）表示させるための設定 */
-        .delay-1 { transition-delay: 0.15s; }
-        .delay-2 { transition-delay: 0.3s; }
-        .delay-3 { transition-delay: 0.45s; }
-        .delay-4 { transition-delay: 0.6s; }
-
-
-        /* レスポンシブ（スマホ対応） */
-        @media (max-width: 960px) {
-            .instructor-detail-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .instructor-photo {
-                max-width: 400px;
-                margin: 0 auto;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 900px) {
-            .about-container, .contact-container {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-
-        /* スマホ用のキャンペーンブース調整 */
-        .section-campaign { padding: 40px 20px; margin: 10px auto; }
-        .campaign-container { padding: 40px 20px; }
-        .campaign-title { font-size: 22px; margin-bottom: 25px; }
-        .campaign-timeline { flex-direction: column; gap: 10px; margin-bottom: 25px; }
-        .timeline-step { width: 100%; padding: 15px; }
-        .timeline-arrow { transform: rotate(90deg); margin: 5px 0; }
-        .campaign-text { font-size: 13px; }
-        .btn-campaign { width: 100%; padding: 16px 20px; font-size: 14px; }
-
-        @media (max-width: 768px) {
-            header { 
-                padding: 15px 20px; 
-            }
-            
-            /* スマホ時のハンバーガーボタン表示 */
-            .menu-btn {
-                display: flex;
-            }
-
-            /* 通常時はナビゲーションを画面外（右側）に隠す */
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background-color: rgba(13, 13, 13, 0.98);
-                border-left: 1px solid #222222;
-                padding: 100px 40px 40px;
-                transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                z-index: 105;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 30px;
-            }
-
-            nav ul li a {
-                font-size: 16px;
-                display: block;
-                padding: 10px 0;
-                border-bottom: 1px solid #1a1a1a;
-            }
-
-            /* ーーー ハンバーガーメニュー開閉時の制御（JSでクラスをトグル） ーーー */
-            
-            /* メニュー表示状態 */
-            nav.is-active {
-                right: 0;
-            }
-
-            /* 三本線のハニカム変形アニメーション */
-            .menu-btn.is-active span:nth-child(1) {
-                transform: rotate(45deg) translate(2px, -2px);
-            }
-            .menu-btn.is-active span:nth-child(2) {
-                opacity: 0;
-            }
-            .menu-btn.is-active span:nth-child(3) {
-                transform: rotate(-45deg) translate(2px, 2px);
-            }
-
-            /* ーーー コンテンツまわりの微調整 ーーー */
-            .hero-title { font-size: 44px; }
-            .section { padding: 80px 20px; scroll-margin-top: 70px; }
-            .section-title { font-size: 28px; margin-bottom: 40px; }
-            .news-item { flex-direction: column; gap: 8px; }
-            .news-date { width: auto; }
-            
-            /* フッターレスポンシブ */
-            footer { padding: 60px 20px 30px; }
-            .footer-top { flex-direction: column; text-align: center; }
-            .footer-nav ul { gap: 20px 30px; justify-content: center; }
-            .footer-bottom { flex-direction: column-reverse; text-align: center; gap: 20px; }
-            .footer-sub-links { justify-content: center; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="img/logo_v2.png" type="image/png">
 </head>
 <body>
 
@@ -1098,6 +31,7 @@
                 <li><a href="#classes">Classes</a></li>
                 <li><a href="#instructors">Instructor</a></li>
                 <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#access">Access</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -1126,7 +60,7 @@
         </div>
     </section>
 
-        <section class="section-campaign">
+    <section class="section-campaign">
         <div class="campaign-container">
             <div class="campaign-badges-wrap">
                 <span class="campaign-badge">PRE-OPEN CAMPAIGN</span>
@@ -1138,13 +72,13 @@
                 第1期生メンバー募集
             </h2>
 
-          <p class="campaign-text">
+            <p class="campaign-text">
                 MIHATE ACADEMYの歴史をここから共に創る、最初の才能を募ります。<br>
                 今だけの特別な一歩を、今だけの特別な特典とともに。<br>
                 まずは体験レッスンで、世界基準の環境とプロフェッショナルの指導を体感してください。
             </p>
 
-        <div class="campaign-timeline reveal-fade-up delay-2">
+            <div class="campaign-timeline reveal-fade-up delay-2">
                 <div class="timeline-step active">
                     <span class="step-date">6/4</span>
                     <span class="step-label">体験受付開始</span>
@@ -1167,7 +101,7 @@
             <div class="campaign-cta-wrap">
                 <a href="#contact" class="btn-campaign">体験レッスン・入会案内はこちら <i class="fa-solid fa-arrow-right"></i></a>
             </div>
-            <p class="campaign-note ">※プレオープン期間の体験枠、および1期生の定員に達し次第、受付を締め切らせていただきます。</p>
+            <p class="campaign-note">※プレオープン期間の体験枠、および1期生の定員に達し次第、受付を締め切らせていただきます。</p>
         </div>
     </section>
 
@@ -1190,23 +124,20 @@
                 <div class="grid-item-content">
                     <span class="grid-item-tag">アーティスト育成クラス</span>
                     <h3 class="grid-item-title">DANCE / VOCAL / CREATE</h3>
-                    <!-- <p class="grid-item-sub">by KAMIHATE</p> -->
                 </div>
             </div>
             <div class="grid-item">
-                <img src="img/class_02.jpg" alt="Dance" class="grid-item-img">
+                <img src="img/class_01.jpg" alt="Dance" class="grid-item-img">
                 <div class="grid-item-content">
                     <span class="grid-item-tag">作曲家育成クラス</span>
                     <h3 class="grid-item-title">LYRIC / CREATE</h3>
-                    <!-- <p class="grid-item-sub">by KAMIHATE</p> -->
                 </div>
             </div>
             <div class="grid-item">
-                <img src="img/class_03.jpg" alt="Vocal" class="grid-item-img">
+                <img src="img/class_01.jpg" alt="Vocal" class="grid-item-img">
                 <div class="grid-item-content">
                     <span class="grid-item-tag">練習生クラス</span>
                     <h3 class="grid-item-title">DANCE / VOCAL</h3>
-                    <!-- <p class="grid-item-sub">by KAMIHATE</p> -->
                 </div>
             </div>
         </div>
@@ -1343,12 +274,11 @@
         <div class="access-container">
             <div class="access-info reveal-fade-up delay-1">
                 <div class="access-detail-block">
-                    <!-- <h3>MIHATE ACADEMY</h3> -->
                     <p class="studio-address">
                         <i class="fa-solid fa-location-dot"></i>BUZZ名古屋本店<br>〒460-0008<br>
                         愛知県名古屋市中区栄２丁目２−１ 広小路伏見中駒ビル8階
                         <span class="studio-note">
-                            ※レッスン日程によってはスタジオが異なる場合がございます。
+                            ※レッスン日程によってスタジオが異なる場合がございます。詳細はレッスン参加者にご連絡致します。
                         </span>
                     </p>
                 </div>
@@ -1362,11 +292,6 @@
                         </li>
                     </ul>
                 </div>
-
-                <!-- <div class="access-route-block">
-                    <h4><i class="fa-solid fa-clock"></i> 営業時間</h4>
-                    <p class="business-hours">木曜・金曜・土曜：10:00 〜 22:00<br><small>※レッスン時間により変動する場合がございます。</small></p>
-                </div> -->
             </div>
 
             <div class="access-map reveal-fade-up delay-2">
@@ -1397,16 +322,6 @@
                     <a href="#" class="btn btn-block btn-line">公式LINE</a>
                 </div>
             </div>
-
-            <!-- <div class="contact-box">
-                <div>
-                    <h3>SNSはこちら</h3>
-                    <p>スタジオの日常、レッスン風景の動画、ワークショップ情報など、最新の情報を随時発信しています。</p>
-                </div>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-block btn-instagram">Instagramはこちら</a>
-                </div>
-            </div> -->
         </div>
     </section>
 
@@ -1433,6 +348,7 @@
                     <li><a href="#classes">Classes</a></li>
                     <li><a href="#instructors">Instructor</a></li>
                     <li><a href="#schedule">Schedule</a></li>
+                    <li><a href="#access">Access</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -1442,7 +358,7 @@
                     <a href="#">プライバシーポリシー</a>
                     <a href="#">特定商取引法に基づく表記</a>
                 </div>
-                <p class="copyright">&copy; 2026 MIHATE ACADEMY. All Rights Reserved.</p>
+                <p class="copyright">© 2026 MIHATE ACADEMY. All Rights Reserved.</p>
                 <a href="#" class="pagetop-btn" aria-label="ページトップへ戻る">
                     <i class="fa-solid fa-chevron-up"></i>
                 </a>
@@ -1471,14 +387,11 @@
             });
         });
 
-
-        // 2. スクロールアニメーション（ふわっと浮き上がる演出）の制御
-        // 画面の75%の位置を要素が通過したら発動するように設定（早めに気持ちよく表示される絶妙なバランス）
+        // 2. スクロールアニメーションの制御
         const revealCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // 一度表示されたら監視を終了（何度もパタパタ動いてチカチカするのを防ぎ、高級感を保つ）
                     observer.unobserve(entry.target);
                 }
             });
@@ -1486,11 +399,10 @@
 
         const revealObserver = new IntersectionObserver(revealCallback, {
             root: null,
-            rootMargin: '0px 0px -15% 0px', // 画面の下部から少し入ったところで動く
+            rootMargin: '0px 0px -15% 0px',
             threshold: 0
         });
 
-        // アニメーションさせたい要素をすべて自動収集して監視対象にする
         const revealElements = document.querySelectorAll('.reveal-fade-up');
         revealElements.forEach(element => {
             revealObserver.observe(element);
