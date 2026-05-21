@@ -195,6 +195,16 @@
             font-size: 15px;
         }
 
+        .studio-note {
+            display: block;
+            font-size: 12px;
+            color: #888888; /* 落ち着いたグレー */
+            line-height: 1.6;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #222222; /* 境界線をうっすら点線で入れる */
+        }
+
         .about-img img {
             width: 100%;
             height: auto;
@@ -245,11 +255,11 @@
             position: relative;
             overflow: hidden;
             background-color: #111111;
-            aspect-ratio: 3 / 4;
+            aspect-ratio: 16 / 10; /* ← 3 / 4（縦長）から 16 / 10（上品な横長）に変更して高さを縮小 */
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 30px;
+            padding: 20px;         /* 余白を少しコンパクトに */
             border: 1px solid #222222;
             transition: border-color 0.3s;
         }
@@ -310,6 +320,37 @@
             align-items: start;
         }
 
+        /* ーーー グランドオープンの枠をキラッと光らせる演出 ーーー */
+        .timeline-step.shining-step {
+            border-color: #c9a063; /* 枠を最初からゴールドにしておく */
+            overflow: hidden;      /* はみ出た光を隠す */
+        }
+
+        /* 擬似要素で白い光の筋を作る */
+        .timeline-step.shining-step::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(201, 160, 99, 0.3) 50%, /* ほのかにゴールド混じりの光 */
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-25deg); /* 光を斜めにする */
+            animation: cardShine 3s infinite linear; /* 4秒ごとにループ */
+        }
+
+        /* 光が左から右へ走り抜けるアニメーション */
+        @keyframes cardShine {
+            0% { left: -100%; }
+            15% { left: 150%; }  /* スッと素早く通り抜ける */
+            100% { left: 150%; } /* 残りの時間は待機（メリハリをつける） */
+        }
+
         .instructor-photo {
             position: relative;
             border: 1px solid #222222;
@@ -321,6 +362,109 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* ーーー スタジオアクセスセクション ーーー */
+        .access-container {
+            display: grid;
+            grid-template-columns: 2fr 3fr; /* 左を少し狭く、右のマップを広く */
+            gap: 60px;
+            align-items: start;
+        }
+
+        .access-info h3 {
+            font-size: 26px;
+            font-weight: 800;
+            color: #c9a063; /* ゴールド */
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .studio-address {
+            font-size: 15px;
+            color: #ffffff;
+            line-height: 1.8;
+        }
+        .studio-address i {
+            color: #c9a063;
+            margin-right: 5px;
+        }
+
+        .access-route-block {
+            margin-top: 35px;
+            border-top: 1px solid #222222;
+            padding-top: 25px;
+        }
+
+        .access-route-block h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .access-route-block h4 i {
+            color: #888888;
+            margin-right: 5px;
+        }
+
+        .route-list {
+            list-style: none;
+        }
+        .route-list li {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+        .station-name {
+            font-weight: 700;
+            color: #dddddd;
+        }
+        .route-detail {
+            color: #888888;
+            margin-top: 2px;
+        }
+
+        .business-hours {
+            font-size: 14px;
+            color: #cccccc;
+            line-height: 1.6;
+        }
+        .business-hours small {
+            color: #666666;
+            font-size: 11px;
+        }
+
+        /* マップの枠（デザイン統一） */
+        .access-map {
+            border: 1px solid #222222;
+            background-color: #111111;
+            padding: 10px;
+            transition: border-color 0.3s;
+        }
+        .access-map:hover {
+            border-color: #c9a063; /* ホバーでゴールドに光る */
+        }
+        .map-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 10; /* パソコンで見た時に程よい横長になる比率 */
+            background-color: #000;
+        }
+        /* マップの色味をサイトの黒ベースに馴染ませるフィルター（お好みで外してもOK） */
+        .map-placeholder iframe {
+            filter: grayscale(1) invert(0.9) contrast(1.2); 
+        }
+
+        /* スマホ・タブレット用のレスポンシブ対応 */
+        @media (max-width: 960px) {
+            .access-container {
+                grid-template-columns: 1fr; /* 縦並びにする */
+                gap: 40px;
+            }
+            .map-placeholder {
+                aspect-ratio: 4 / 3; /* スマホでは少し正方形に近くして見やすく */
+            }
         }
 
         .instructor-profile .role {
@@ -786,7 +930,6 @@
             margin-left: 8px;
             transition: transform 0.3s ease;
         }
-
         .btn-campaign:hover {
             opacity: 1;
             background: transparent;
@@ -983,6 +1126,51 @@
         </div>
     </section>
 
+        <section class="section-campaign">
+        <div class="campaign-container">
+            <div class="campaign-badges-wrap">
+                <span class="campaign-badge">PRE-OPEN CAMPAIGN</span>
+                <span class="campaign-badge highlight">期間限定：入会金無料</span>
+            </div>
+            
+            <h2 class="campaign-title reveal-fade-up delay-1">
+                <span>NEW GENERATION</span><br>
+                第1期生メンバー募集
+            </h2>
+
+          <p class="campaign-text">
+                MIHATE ACADEMYの歴史をここから共に創る、最初の才能を募ります。<br>
+                今だけの特別な一歩を、今だけの特別な特典とともに。<br>
+                まずは体験レッスンで、世界基準の環境とプロフェッショナルの指導を体感してください。
+            </p>
+
+        <div class="campaign-timeline reveal-fade-up delay-2">
+                <div class="timeline-step active">
+                    <span class="step-date">6/4</span>
+                    <span class="step-label">体験受付開始</span>
+                    <span class="step-sub">先行予約受付スタート</span>
+                </div>
+                <div class="timeline-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="timeline-step active">
+                    <span class="step-date">7/4</span>
+                    <span class="step-label">プレオープン</span>
+                    <span class="step-sub">体験レッスン開始</span>
+                </div>
+                <div class="timeline-arrow"><i class="fa-solid fa-chevron-right"></i></div>
+                <div class="timeline-step shining-step">
+                    <span class="step-date">9/4</span>
+                    <span class="step-label">グランドオープン</span>
+                    <span class="step-sub">1期生 本レッスン始動</span>
+                </div>
+            </div>
+
+            <div class="campaign-cta-wrap">
+                <a href="#contact" class="btn-campaign">体験レッスン・入会案内はこちら <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+            <p class="campaign-note ">※プレオープン期間の体験枠、および1期生の定員に達し次第、受付を締め切らせていただきます。</p>
+        </div>
+    </section>
+
     <section class="section" id="news">
         <h2 class="section-title reveal-fade-up">News</h2>
         <ul class="news-list reveal-fade-up delay-1">
@@ -1002,23 +1190,23 @@
                 <div class="grid-item-content">
                     <span class="grid-item-tag">アーティスト育成クラス</span>
                     <h3 class="grid-item-title">DANCE / VOCAL / CREATE</h3>
-                    <p class="grid-item-sub">by KAMIHATE</p>
+                    <!-- <p class="grid-item-sub">by KAMIHATE</p> -->
                 </div>
             </div>
             <div class="grid-item">
-                <img src="img/class_01.jpg" alt="Dance" class="grid-item-img">
+                <img src="img/class_02.jpg" alt="Dance" class="grid-item-img">
                 <div class="grid-item-content">
                     <span class="grid-item-tag">作曲家育成クラス</span>
                     <h3 class="grid-item-title">LYRIC / CREATE</h3>
-                    <p class="grid-item-sub">by KAMIHATE</p>
+                    <!-- <p class="grid-item-sub">by KAMIHATE</p> -->
                 </div>
             </div>
             <div class="grid-item">
-                <img src="img/class_01.jpg" alt="Vocal" class="grid-item-img">
+                <img src="img/class_03.jpg" alt="Vocal" class="grid-item-img">
                 <div class="grid-item-content">
                     <span class="grid-item-tag">練習生クラス</span>
                     <h3 class="grid-item-title">DANCE / VOCAL</h3>
-                    <p class="grid-item-sub">by KAMIHATE</p>
+                    <!-- <p class="grid-item-sub">by KAMIHATE</p> -->
                 </div>
             </div>
         </div>
@@ -1027,7 +1215,7 @@
     <section class="section" id="instructors">
         <h2 class="section-title reveal-fade-up">Instructor</h2>
         <div class="instructor-detail-container">
-            <div class="instructor-photo reveal-fade-up delay-1">
+            <div class="instructor-photo">
                 <img src="img/kamihate.jpg" alt="KAMIHATE">
             </div>
             <div class="instructor-profile">
@@ -1037,13 +1225,13 @@
                     <p class="name-en">Kamihate</p>
                     
                     <p class="bio-text">
-                        Stray Kids準備生やMajor9練習生としてキャリアをスタート。サバイバルオーディション番組『MIXNINE』への出演やメジャーデビューを経て、本場の圧倒的なパフォーマンス力を体得する。<br>
-                        韓国での活動を基盤としつつも、アーティスト活動の枠を超え、JO1、INI、NCT 127、aespa、山田涼介など、日韓のトップを走るメジャーアーティストの作詞・作曲、ボーカルディレクション、コーラスを多数手がける。<br>
+                        Stray Kids準備生やMajor9練習生としてキャリアをスタート。サバイバルオーディション番組『MIXNINE』への出演やメジャーデビューを経て、本場の圧倒的なパフォーマンス力を体得する。<br><br>
+                        韓国での活動を基盤としつつも、アーティスト活動の枠を超え、JO1、INI、NCT 127、aespa、山田涼介など、日韓のトップを走るメジャーアーティストの作詞・作曲、ボーカルディレクション、コーラスを多数手がける。<br><br>
                         ダンスのグルーヴを深く知るからこその歌唱アプローチと、時代を捉えるサウンドクリエイト能力を武器に、ボーカル・ダンス・楽曲制作のすべてを統括する次世代のトータルプロデューサー。
                     </p>
                 </div>
 
-                <div class="biography-block reveal-fade-up delay-3">
+                <div class="biography-block">
                     <h4>Biography & Works</h4>
                     <ul class="history-list">
                         <li>
@@ -1133,83 +1321,92 @@
                         <td class="schedule-time">10:00 - 13:00</td>
                         <td>-</td>
                         <td>-</td>
-                        <td>Bクラス（練習生）<br><small>by KAMIHATE</small></td>
+                        <td>練習生クラス（B）</td>
                     </tr>
                     <tr>
                         <td class="schedule-time">18:00 - 19:30</td>
-                        <td>アーティスト クラス<br><small>by KAMIHATE</small></td>
-                        <td rowspan="2">Aクラス（練習生）<br><small>18:00 - 21:00 / by KAMIHATE</small></td>
-                        <td rowspan="2">Cクラス（練習生）<br><small>18:00 - 21:00 / by KAMIHATE</small></td>
+                        <td>アーティストクラス</td>
+                        <td rowspan="2">練習生クラス（A）<br><small>18:00 - 21:00</small></td>
+                        <td rowspan="2">練習生クラス（C）<br><small>18:00 - 21:00</small></td>
                     </tr>
                     <tr>
                         <td class="schedule-time">19:30 - 21:00</td>
-                        <td>作曲家 クラス<br><small>by KAMIHATE</small></td>
+                        <td>作曲家クラス</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <section class="section-campaign">
-        <div class="campaign-container">
-            <div class="campaign-badges-wrap">
-                <span class="campaign-badge">PRE-OPEN CAMPAIGN</span>
-                <span class="campaign-badge highlight">期間限定：入会金無料</span>
-            </div>
-            
-            <h2 class="campaign-title reveal-fade-up delay-1">
-                <span>NEW GENERATION</span><br>
-                第1期生 プレミアムメンバー募集
-            </h2>
-
-            <div class="campaign-timeline reveal-fade-up delay-2">
-                <div class="timeline-step active">
-                    <span class="step-date">7/4</span>
-                    <span class="step-label">プレオープン</span>
-                    <span class="step-sub">体験レッスン受付開始</span>
+    <section class="section" id="access">
+        <h2 class="section-title reveal-fade-up">Studio Access</h2>
+        <div class="access-container">
+            <div class="access-info reveal-fade-up delay-1">
+                <div class="access-detail-block">
+                    <!-- <h3>MIHATE ACADEMY</h3> -->
+                    <p class="studio-address">
+                        <i class="fa-solid fa-location-dot"></i>BUZZ名古屋本店<br>〒460-0008<br>
+                        愛知県名古屋市中区栄２丁目２−１ 広小路伏見中駒ビル8階
+                        <span class="studio-note">
+                            ※レッスン日程によってはスタジオが異なる場合がございます。
+                        </span>
+                    </p>
                 </div>
-                <div class="timeline-arrow"><i class="fa-solid fa-chevron-right"></i></div>
-                <div class="timeline-step">
-                    <span class="step-date">9/4</span>
-                    <span class="step-label">グランドオープン</span>
-                    <span class="step-sub">1期生 本レッスン始動</span>
+                
+                <div class="access-route-block">
+                    <h4><i class="fa-solid fa-train"></i> 最寄り駅</h4>
+                    <ul class="route-list">
+                        <li>
+                            <span class="station-name">地下鉄東山線・鶴舞線「伏見駅」</span>
+                            <span class="route-detail">4番出口より徒歩1分</span>
+                        </li>
+                    </ul>
                 </div>
+
+                <!-- <div class="access-route-block">
+                    <h4><i class="fa-solid fa-clock"></i> 営業時間</h4>
+                    <p class="business-hours">木曜・金曜・土曜：10:00 〜 22:00<br><small>※レッスン時間により変動する場合がございます。</small></p>
+                </div> -->
             </div>
 
-            <p class="campaign-text">
-                MIHATE ACADEMYの歴史をここから共に創る、最初の才能を募ります。<br>
-                今だけの特別な一歩を、今だけの特別な特典とともに。<br>
-                まずは体験レッスンで、世界基準の環境とプロフェッショナルの指導を体感してください。
-            </p>
-            <div class="campaign-cta-wrap">
-                <a href="#contact" class="btn-campaign">体験レッスン・入会案内はこちら <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="access-map reveal-fade-up delay-2">
+                <div class="map-placeholder">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3261.537955718381!2d136.8963593749681!3d35.16814225799016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600377dfb3322a9f%3A0xf186f33389d2facf!2zQlVaWuWQjeWPpOWxi-acrOW6lw!5e0!3m2!1sja!2sjp!4v1779334446753!5m2!1sja!2sjp"
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
-            <p class="campaign-note ">※プレオープン期間の体験枠、および1期生の定員に達し次第、受付を締め切らせていただきます。</p>
         </div>
     </section>
 
     <section class="section" id="contact">
-        <h2 class="section-title reveal-fade-up">Contact & SNS</h2>
+        <h2 class="section-title reveal-fade-up">Contact</h2>
         <div class="contact-container">
-            <div class="contact-box reveal-fade-up delay-1">
+            <div class="contact-box">
                 <div>
-                    <h3>Admission & Inquiry</h3>
-                    <p>体験レッスンのご予約、入会に関するご質問、システムについてのお問い合わせは公式LINE、またはメールフォームよりお気軽にご連絡ください。</p>
+                    <h3>体験予約・お問い合わせはこちら</h3>
+                    <p>体験レッスンのご予約、入会に関するご質問、そのほかのお問い合わせは公式LINEよりお気軽にご連絡ください。</p>
                 </div>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-block btn-line">公式LINEを追加して質問する</a>
+                    <a href="#" class="btn btn-block btn-line">公式LINE</a>
                 </div>
             </div>
 
-            <div class="contact-box reveal-fade-up delay-2">
+            <!-- <div class="contact-box">
                 <div>
-                    <h3>Official Instagram</h3>
-                    <p>スタジオの日常、レッスン風景の動画、インストラクターによるワークショップ情報など、最新のモーメントを随時発信しています。</p>
+                    <h3>SNSはこちら</h3>
+                    <p>スタジオの日常、レッスン風景の動画、ワークショップ情報など、最新の情報を随時発信しています。</p>
                 </div>
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-block btn-instagram">Instagramをフォローする</a>
+                    <a href="#" class="btn btn-block btn-instagram">Instagramはこちら</a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
