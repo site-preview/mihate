@@ -1169,16 +1169,17 @@ footer {
 }
 
 /* ==========================================================================
-   FAQ（よくある質問）
+   FAQ（よくある質問）- ゆったり広々デザイン修正版
    ========================================================================== */
 .faq-container {
-    max-width: 800px;
+    max-width: 1000px; /* 横幅を1000pxに広げてキュッとなるのを防ぐ */
     margin: 0 auto;
+    padding: 0 40px;   /* 左右に程よい余白を設定 */
 }
 
 .faq-item {
     border-bottom: 1px solid #222222;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* アイテム間の隙間を少し広げる */
 }
 
 .faq-question {
@@ -1189,13 +1190,14 @@ footer {
     background: transparent;
     border: none;
     color: #ffffff;
-    font-size: 16px;
+    font-size: 18px; /* 文字を少し大きくしてPCでの視認性をアップ */
     font-weight: 700;
     text-align: left;
-    padding: 25px 10px;
+    padding: 32px 10px; /* 上下の余白を広げてゆったりと */
     cursor: pointer;
     position: relative;
     transition: color 0.3s;
+    letter-spacing: 0.05em;
 }
 
 .faq-question:hover {
@@ -1206,18 +1208,18 @@ footer {
 .faq-question::before {
     content: "Q.";
     color: #c9a063;
-    margin-right: 12px;
-    font-size: 18px;
+    margin-right: 16px;
+    font-size: 22px; /* Qの文字を少し大きく強調 */
     font-weight: 900;
 }
 
 /* ＋・ー を表現するアイコン */
 .faq-icon {
     position: relative;
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     flex-shrink: 0;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .faq-icon::before,
@@ -1230,7 +1232,7 @@ footer {
 
 /* 横線 */
 .faq-icon::before {
-    top: 6px;
+    top: 7px;
     left: 0;
     width: 100%;
     height: 2px;
@@ -1239,7 +1241,7 @@ footer {
 /* 縦線 */
 .faq-icon::after {
     top: 0;
-    left: 6px;
+    left: 7px;
     width: 2px;
     height: 100%;
 }
@@ -1257,27 +1259,46 @@ footer {
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: max-height 0.35s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .faq-answer-content {
-    padding: 0 10px 25px 35px; /* Qの位置に合わせるための余白 */
-    font-size: 14px;
+    padding: 0 10px 35px 44px; /* Q(22px)+余白に合わせた美しいインデント */
+    font-size: 15px; /* 回答も少しだけ大きく */
     color: #cccccc;
-    line-height: 1.8;
+    line-height: 1.9; /* 行間を広げて読みやすく */
+    letter-spacing: 0.03em;
 }
 
-/* スマホ用微調整 */
+/* ==========================================================================
+   スマホ・タブレット用調整（画面が狭いときは自動で最適化）
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .faq-container {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+
 @media (max-width: 768px) {
     .faq-question {
-        font-size: 14px;
-        padding: 20px 5px;
+        font-size: 15px;
+        padding: 24px 5px;
     }
     .faq-question::before {
-        font-size: 16px;
+        font-size: 18px;
+        margin-right: 10px;
     }
     .faq-answer-content {
         font-size: 13px;
-        padding: 0 5px 20px 25px;
+        padding: 0 5px 24px 30px;
+        line-height: 1.7;
     }
+    .faq-icon {
+        width: 12px;
+        height: 12px;
+        margin-left: 15px;
+    }
+    .faq-icon::before { top: 5px; }
+    .faq-icon::after { left: 5px; }
 }
