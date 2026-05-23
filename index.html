@@ -310,6 +310,61 @@
         </div>
     </section>
 
+    <section class="section" id="faq">
+        <h2 class="section-title reveal-fade-up">FAQ</h2>
+        <div class="faq-container reveal-fade-up delay-1">
+            
+            <div class="faq-item">
+                <button class="faq-question js-faq-trigger">
+                    <span>初心者でもレッスンを受けられますか？</span>
+                    <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        はい、未経験の方でも大歓迎です。「練習生クラス」では基礎から徹底的に指導しますので、歌やダンスが初めての方でも安心してステップアップできる環境を整えています。
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question js-faq-trigger">
+                    <span>体験レッスンには何を持っていけばよいですか？</span>
+                    <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        動きやすい服装（ダンスレッスンがある場合）、室内用のスニーカー、水分補給用の飲料、そして筆記用具をお持ちください。ボーカルのみの場合は、お好きな課題曲の音源や歌詞カードがあるとスムーズです。
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question js-faq-trigger">
+                    <span>年齢制限はありますか？</span>
+                    <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        プロを目指すクラスや練習生クラスに関しては、原則として中学生以上〜25歳までを対象としております。これ以外の年齢で受講をご希望の場合は、公式LINEよりお気軽にご相談ください。
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question js-faq-trigger">
+                    <span>月の途中からでも入会は可能ですか？</span>
+                    <span class="faq-icon"></span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        はい、月の途中からでもご入会いただけます。その場合の初月の月謝は回数割（日割り）で計算いたしますので、無駄なくレッスンを開始していただけます。
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <section class="section" id="contact">
         <h2 class="section-title reveal-fade-up">Contact</h2>
         <div class="contact-container">
@@ -493,6 +548,29 @@
         modalCloseBtn.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) closeModal(); // 背景クリックで閉じる
+        });
+
+        // 4. FAQアコーディオンの制御
+        const faqTriggers = document.querySelectorAll('.js-faq-trigger');
+
+        faqTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentNode;
+                const answer = trigger.nextElementSibling;
+
+                // 他の開いているFAQを閉じたい場合は以下2行のコメントアウトを解除してください
+                // document.querySelectorAll('.faq-item.is-open').forEach(openItem => {
+                //     if(openItem !== item) { openItem.classList.remove('is-open'); openItem.querySelector('.faq-answer').style.maxHeight = null; }
+                // });
+
+                if (item.classList.contains('is-open')) {
+                    item.classList.remove('is-open');
+                    answer.style.maxHeight = null;
+                } else {
+                    item.classList.add('is-open');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
         });
     </script>
 

@@ -1167,3 +1167,117 @@ footer {
         font-size: 13px;
     }
 }
+
+/* ==========================================================================
+   FAQ（よくある質問）
+   ========================================================================== */
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #222222;
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: left;
+    padding: 25px 10px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.faq-question:hover {
+    color: #c9a063; /* ホバー時にゴールドに */
+}
+
+/* 質問の左側に「Q」のマークを付与 */
+.faq-question::before {
+    content: "Q.";
+    color: #c9a063;
+    margin-right: 12px;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+/* ＋・ー を表現するアイコン */
+.faq-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+    content: "";
+    position: absolute;
+    background-color: #ffffff;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* 横線 */
+.faq-icon::before {
+    top: 6px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+}
+
+/* 縦線 */
+.faq-icon::after {
+    top: 0;
+    left: 6px;
+    width: 2px;
+    height: 100%;
+}
+
+/* 開いたときのアイコンの変化（縦線を回転させて隠すことでマイナスにする） */
+.faq-item.is-open .faq-icon::after {
+    transform: rotate(90deg);
+    background-color: #c9a063;
+}
+.faq-item.is-open .faq-icon::before {
+    background-color: #c9a063;
+}
+
+/* 回答のラッパー（アニメーション用） */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.faq-answer-content {
+    padding: 0 10px 25px 35px; /* Qの位置に合わせるための余白 */
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 1.8;
+}
+
+/* スマホ用微調整 */
+@media (max-width: 768px) {
+    .faq-question {
+        font-size: 14px;
+        padding: 20px 5px;
+    }
+    .faq-question::before {
+        font-size: 16px;
+    }
+    .faq-answer-content {
+        font-size: 13px;
+        padding: 0 5px 20px 25px;
+    }
+}
