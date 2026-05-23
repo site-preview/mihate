@@ -72,7 +72,7 @@
         <a href="#classes" class="btn">クラスを見る</a>
     </section>
 
-    <section class="section" id="about">
+   <section class="section" id="about">
         <h2 class="section-title reveal-fade-up">Studio About</h2>
         <div class="about-container">
             <div class="about-text reveal-fade-up delay-1">
@@ -85,6 +85,44 @@
             </div>
             <div class="about-img reveal-fade-up delay-2">
                 <img src="img/logo_v3.png" alt="Studio Inside">
+            </div>
+        </div>
+
+        <div class="features-grid reveal-fade-up delay-3">
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <span class="feature-number">01</span>
+                    <i class="fa-solid fa-microphone-lines"></i>
+                </div>
+                <h4>現役プロによる直接指導</h4>
+                <p>日韓のトップアーティストを手がける現役クリエイター陣がメンターとなり、現場で即戦力となる最高峰の技術を直接伝授します。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <span class="feature-number">02</span>
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <h4>半年に1回のレコーディング</h4>
+                <p>定期的にプロ仕様の機材を用いたレコーディングを実施。自らの歌声を客観的に分析し、アーティストとしての成長を可視化します。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <span class="feature-number">03</span>
+                    <i class="fa-solid fa-camera-retro"></i>
+                </div>
+                <h4>入会時の宣材写真撮影</h4>
+                <p>入会時にプロのカメラマンによるアーティスト写真（宣材写真）の撮影を行います。オーディションへの第一歩を最高水準の1枚からスタート。</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon-wrap">
+                    <span class="feature-number">04</span>
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+                <h4>韓国芸能事務所への推薦環境</h4>
+                <p>独自のグローバルネットワークを活かし、随時、提携する韓国の主要芸能事務所へ履歴書やプロフィールを直接送れる環境を完備しています。</p>
             </div>
         </div>
     </section>
@@ -506,13 +544,23 @@
         // 3. クラス詳細モーダルの制御
         const modalData = {
             artist: {
-                tag: "アーティスト育成クラス",
+tag: "アーティスト育成クラス",
                 title: "DANCE / VOCAL / CREATE",
                 body: `
                     <p class="modal-desc">プロのアーティストとしてステージに立つための総合クラス。ボーカル・ダンス・魅せ方の全てを第一線で活躍するプロが指導します。</p>
                     <table class="modal-table">
-                        <tr><th>月謝</th><td>¥33,000 <small>(税込)</small></td></tr>
-                        <tr><th>回数</th><td>月4回 / 1回 90分</td></tr>
+                        <tr><th>月謝</th><td>¥35,000 <small>(税込)</small></td></tr>
+                        <tr>
+                            <th>日程</th>
+                            <td>
+                                <div class="modal-schedule-list">
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">木曜</span>
+                                        <span class="time-text">18:00~19:30</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                         <tr><th>対象</th><td>プロを目指す方、オーディション合格を目指す方</td></tr>
                     </table>
                 `
@@ -521,23 +569,54 @@
                 tag: "作曲家育成クラス",
                 title: "LYRIC / CREATE",
                 body: `
-                    <p class="modal-desc">自らの世界を形にする、作詞・作曲・サウンドクリエイトに特化したクラス。時代を捉える楽曲制作のノウ伝授します。</p>
+                    <p class="modal-desc">自らの世界を形にする、作詞・作曲・サウンドクリエイトに特化したクラス。時代を捉える楽曲制作のノウハウを習得します。</p>
                     <table class="modal-table">
-                        <tr><th>月謝</th><td>¥27,500 <small>(税込)</small></td></tr>
-                        <tr><th>回数</th><td>月4回 / 1回 90分</td></tr>
+                        <tr><th>月謝</th><td>¥35,000 <small>(税込)</small></td></tr>
+                        <tr>
+                            <th>日程</th>
+                            <td>
+                                <div class="modal-schedule-list">
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">木曜</span>
+                                        <span class="time-text">19:30~21:00</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                         <tr><th>対象</th><td>クリエイター、シンガーソングライターを目指す方</td></tr>
                     </table>
                 `
             },
             trainee: {
-                tag: "練習生クラス",
+tag: "練習生クラス",
                 title: "DANCE / VOCAL",
                 body: `
-                    <p class="modal-desc">基礎から徹底的に叩き込み、アーティストクラスへの昇格や大手事務所への所属を目指すバックアップクラスです。</p>
+                    <p class="modal-desc">世界に通用するダンス・ボーカル技能を習得し、大手事務所への所属を目指すバックアップクラスです。</p>
                     <table class="modal-table">
-                        <tr><th>月謝</th><td>¥22,000 <small>(税込)</small></td></tr>
-                        <tr><th>回数</th><td>週3日制（スケジュール参照）</td></tr>
-                        <tr><th>対象</th><td>中学生〜25歳までの初心者・経験者</td></tr>
+                        <tr><th>月謝</th><td>¥40,000 <small>(税込)</small></td></tr>
+                        <tr>
+                            <th>日程</th>
+                            <td>
+                                <div class="modal-schedule-list">
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">金曜</span>
+                                        <span class="time-text">18:00 ～ 21:00</span>
+                                        <span class="class-name">練習生 Aクラス</span>
+                                    </div>
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">土曜</span>
+                                        <span class="time-text">10:00 ～ 13:00</span>
+                                        <span class="class-name">練習生 Bクラス</span>
+                                    </div>
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">土曜</span>
+                                        <span class="time-text">18:00 ～ 21:00</span>
+                                        <span class="class-name">練習生 Cクラス</span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><th>対象</th><td>練習生として事務所所属を目指す方</td></tr>
                     </table>
                 `
             }
