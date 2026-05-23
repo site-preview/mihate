@@ -953,7 +953,7 @@ footer {
 .timeline-step { width: 100%; padding: 15px; }
 .timeline-arrow { transform: rotate(90deg); margin: 5px 0; }
 .campaign-text { font-size: 13px; }
-.btn-campaign { width: 100%; padding: 16px 20px; font-size: 14px; }
+.btn-campaign { width: 100%; padding: 16px 20px; font-size: 14px; max-width: 500px; }
 
 @media (max-width: 768px) {
     header { 
