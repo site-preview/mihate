@@ -1185,19 +1185,25 @@ footer {
 .faq-question {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* 左寄せに変更 */
     align-items: center;
     background: transparent;
     border: none;
     color: #ffffff;
-    font-size: 18px; /* 文字を少し大きくしてPCでの視認性をアップ */
+    font-size: 18px;
     font-weight: 700;
     text-align: left;
-    padding: 32px 10px; /* 上下の余白を広げてゆったりと */
+    padding: 32px 10px;
     cursor: pointer;
     position: relative;
     transition: color 0.3s;
     letter-spacing: 0.05em;
+}
+
+/* 質問文のテキスト部分を左側に詰め、プラスアイコンを右端に固定するための設定 */
+.faq-question span:first-child {
+    flex-grow: 1; /* テキスト領域を限界まで広げて左寄せを確定させる */
+    padding-right: 20px; /* アイコンと被らないための余白 */
 }
 
 .faq-question:hover {
