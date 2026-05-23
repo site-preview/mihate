@@ -116,24 +116,24 @@
         </ul>
     </section>
 
-    <section class="section" id="classes">
+<section class="section" id="classes">
         <h2 class="section-title reveal-fade-up">Classes</h2>
         <div class="grid-container">
-            <div class="grid-item">
+            <div class="grid-item" data-modal="artist" style="cursor: pointer;">
                 <img src="img/class_01.jpg" alt="Dance" class="grid-item-img">
                 <div class="grid-item-content">
                     <span class="grid-item-tag">アーティスト育成クラス</span>
                     <h3 class="grid-item-title">DANCE / VOCAL / CREATE</h3>
                 </div>
             </div>
-            <div class="grid-item">
+            <div class="grid-item" data-modal="creator" style="cursor: pointer;">
                 <img src="img/class_02.jpg" alt="Dance" class="grid-item-img">
                 <div class="grid-item-content">
                     <span class="grid-item-tag">作曲家育成クラス</span>
                     <h3 class="grid-item-title">LYRIC / CREATE</h3>
                 </div>
             </div>
-            <div class="grid-item">
+            <div class="grid-item" data-modal="trainee" style="cursor: pointer;">
                 <img src="img/class_03.jpg" alt="Vocal" class="grid-item-img">
                 <div class="grid-item-content">
                     <span class="grid-item-tag">練習生クラス</span>
@@ -325,6 +325,17 @@
         </div>
     </section>
 
+    <div id="class-modal" class="modal-overlay">
+        <div class="modal-window">
+            <button class="modal-close" id="js-modal-close" aria-label="閉じる">✕</button>
+            <div class="modal-content">
+                <span class="modal-tag" id="modal-tag"></span>
+                <h3 class="modal-title" id="modal-title"></h3>
+                <div class="modal-body" id="modal-body"></div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-inner">
             <div class="footer-top">
@@ -406,6 +417,82 @@
         const revealElements = document.querySelectorAll('.reveal-fade-up');
         revealElements.forEach(element => {
             revealObserver.observe(element);
+        });
+
+        // 3. クラス詳細モーダルの制御
+        const modalData = {
+            artist: {
+                tag: "アーティスト育成クラス",
+                title: "DANCE / VOCAL / CREATE",
+                body: `
+                    <p class="modal-desc">プロのアーティストとしてステージに立つための総合クラス。ボーカル・ダンス・魅せ方の全てを第一線で活躍するプロが指導します。</p>
+                    <table class="modal-table">
+                        <tr><th>月謝</th><td>¥33,000 <small>(税込)</small></td></tr>
+                        <tr><th>回数</th><td>月4回 / 1回 90分</td></tr>
+                        <tr><th>対象</th><td>プロを目指す方、オーディション合格を目指す方</td></tr>
+                    </table>
+                `
+            },
+            creator: {
+                tag: "作曲家育成クラス",
+                title: "LYRIC / CREATE",
+                body: `
+                    <p class="modal-desc">自らの世界を形にする、作詞・作曲・サウンドクリエイトに特化したクラス。時代を捉える楽曲制作のノウ伝授します。</p>
+                    <table class="modal-table">
+                        <tr><th>月謝</th><td>¥27,500 <small>(税込)</small></td></tr>
+                        <tr><th>回数</th><td>月4回 / 1回 90分</td></tr>
+                        <tr><th>対象</th><td>クリエイター、シンガーソングライターを目指す方</td></tr>
+                    </table>
+                `
+            },
+            trainee: {
+                tag: "練習生クラス",
+                title: "DANCE / VOCAL",
+                body: `
+                    <p class="modal-desc">基礎から徹底的に叩き込み、アーティストクラスへの昇格や大手事務所への所属を目指すバックアップクラスです。</p>
+                    <table class="modal-table">
+                        <tr><th>月謝</th><td>¥22,000 <small>(税込)</small></td></tr>
+                        <tr><th>回数</th><td>週3日制（スケジュール参照）</td></tr>
+                        <tr><th>対象</th><td>中学生〜25歳までの初心者・経験者</td></tr>
+                    </table>
+                `
+            }
+        };
+
+        const modalOverlay = document.getElementById('class-modal');
+        const modalCloseBtn = document.getElementById('js-modal-close');
+        const gridItems = document.querySelectorAll('.grid-item');
+
+        const mTag = document.getElementById('modal-tag');
+        const mTitle = document.getElementById('modal-title');
+        const mBody = document.getElementById('modal-body');
+
+        // モーダルを開く
+        gridItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const targetKey = item.getAttribute('data-modal');
+                const data = modalData[targetKey];
+
+                if (data) {
+                    mTag.textContent = data.tag;
+                    mTitle.textContent = data.title;
+                    mBody.innerHTML = data.body;
+
+                    modalOverlay.classList.add('is-active');
+                    body.classList.add('menu-open'); // 背景スクロール固定
+                }
+            });
+        });
+
+        // モーダルを閉じる関数
+        const closeModal = () => {
+            modalOverlay.classList.remove('is-active');
+            body.classList.remove('menu-open');
+        };
+
+        modalCloseBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal(); // 背景クリックで閉じる
         });
     </script>
 
