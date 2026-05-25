@@ -402,102 +402,96 @@ nav ul li a {
     color: #ffffff;
 }
 
-/* スタジオアクセスセクション */
+/* ==========================================================================
+   スタジオアクセスセクション（最寄り駅特化版）
+   ========================================================================== */
 .access-container {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
-    gap: 60px;
-    align-items: start;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
 }
 
-.access-info h3 {
-    font-size: 26px;
-    font-weight: 800;
+.access-station-card {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111111;
+    border: 1px solid #222222;
+    padding: 30px 50px;
+    gap: 30px;
+    text-align: left;
+    transition: border-color 0.3s;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+.access-station-card:hover {
+    border-color: #c9a063; /* ゴールドの枠線 */
+}
+
+.station-icon {
+    font-size: 36px;
     color: #c9a063;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
+    flex-shrink: 0;
 }
 
-.studio-address {
-    font-size: 15px;
-    color: #ffffff;
-    line-height: 1.8;
-}
-
-.studio-address i {
-    color: #c9a063;
-    margin-right: 5px;
-}
-
-.studio-note {
-    display: block;
-    font-size: 12px;
+.access-station-card h4 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     color: #888888;
-    line-height: 1.6;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed #222222;
-}
-
-.access-route-block {
-    margin-top: 35px;
-    border-top: 1px solid #222222;
-    padding-top: 25px;
-}
-
-.access-route-block h4 {
-    font-size: 15px;
     font-weight: 700;
-    margin-bottom: 15px;
-    color: #ffffff;
-    letter-spacing: 1px;
-}
-
-.access-route-block h4 i {
-    color: #888888;
-    margin-right: 5px;
-}
-
-.route-list {
-    list-style: none;
-}
-
-.route-list li {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 12px;
-    font-size: 14px;
+    margin-bottom: 5px;
 }
 
 .station-name {
+    display: block;
+    font-size: 18px;
     font-weight: 700;
-    color: #dddddd;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    line-height: 1.4;
 }
 
 .route-detail {
+    display: block;
+    color: #aaaaaa;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.studio-note {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 13px;
     color: #888888;
-    margin-top: 2px;
+    line-height: 1.8;
+    text-align: left;
+    display: block;
+    border-top: 1px dashed #222222;
+    padding-top: 20px;
 }
 
-.access-map {
-    border: 1px solid #222222;
-    background-color: #111111;
-    padding: 10px;
-    transition: border-color 0.3s;
-}
-
-.access-map:hover {
-    border-color: #c9a063;
-}
-
-.map-placeholder {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    background-color: #000;
-}
-
-.map-placeholder iframe {
-    filter: grayscale(1) invert(0.9) contrast(1.2); 
+/* スマホ用調整（画面が狭いときは縦並びに） */
+@media (max-width: 600px) {
+    .access-station-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+        gap: 15px;
+    }
+    .station-name {
+        font-size: 16px;
+    }
+    .route-detail {
+        font-size: 13px;
+    }
+    .studio-note {
+        font-size: 12px;
+        text-align: justify;
+    }
 }
 
 /* コンタクト・SNSセクション */
