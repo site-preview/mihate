@@ -1449,3 +1449,292 @@ footer {
         font-size: 13px;
     }
 }
+
+/* ==========================================================================
+   体験・入会案内ページ（entry.html）専用スタイル
+   ========================================================================== */
+
+/* 背景スクロールを制限しないためのリセット（念のため） */
+.entry-page-body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+/* 入会案内 ヒーローエリア */
+.entry-hero {
+    padding: 160px 20px 60px 20px;
+    text-align: center;
+    background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+    border-bottom: 1px solid #111111;
+}
+
+.entry-hero-title-area {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.entry-hero-sub {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: #c9a063;
+    margin-bottom: 12px;
+}
+
+.entry-hero-main {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+}
+
+/* タイムライン・フロー構造 */
+.flow-section {
+    padding: 80px 0;
+    background-color: #000000;
+}
+
+.flow-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 30px;
+}
+
+/* タイムラインのセンターを通る縦線 */
+.flow-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 40px;
+    bottom: 120px;
+    width: 1px;
+    background: linear-gradient(to bottom, #c9a063 0%, #222222 100%);
+    transform: translateX(-50%);
+}
+
+/* 各ステップの共通配置 */
+.flow-step {
+    position: relative;
+    margin-bottom: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* 奇数は左寄せ */
+}
+
+.flow-step:nth-child(even) {
+    justify-content: flex-end; /* 偶数は右寄せ */
+}
+
+/* 中央配置のステップ番号バッジ */
+.flow-badge {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 46px;
+    height: 46px;
+    background-color: #000000;
+    border: 1px solid #c9a063;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    color: #c9a063;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+}
+
+/* ステップカードのコンテンツ領域 */
+.flow-content {
+    width: 44%;
+    background-color: #0b0b0b;
+    border: 1px solid #1c1c1c;
+    padding: 30px;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.flow-content:hover {
+    border-color: #c9a063;
+}
+
+/* カードのタイトル */
+.step-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.05em;
+}
+
+.step-title .step-icon {
+    color: #c9a063;
+    font-size: 14px;
+}
+
+.step-title .step-icon-line {
+    color: #06C755; /* LINE特有のグリーン */
+    font-size: 16px;
+}
+
+/* 説明テキスト */
+.step-text {
+    font-size: 13px;
+    color: #aaaaaa;
+    line-height: 1.75;
+    text-align: justify;
+}
+
+/* 特設LINE誘導ボタン */
+.line-btn-wrap {
+    margin-top: 20px;
+}
+
+.line-direct-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: #06C755;
+    color: #ffffff !important;
+    padding: 12px 15px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%;
+}
+
+.line-direct-btn:hover {
+    background-color: #05b34c;
+    opacity: 1 !important;
+    transform: translateY(-2px);
+}
+
+.line-direct-btn i {
+    font-size: 16px;
+}
+
+/* 9/1 スタートのゴールエリア */
+.flow-goal {
+    text-align: center;
+    position: relative;
+    z-index: 5;
+    margin-top: 60px;
+    padding: 50px 20px;
+    background: radial-gradient(circle, rgba(201,160,99,0.08) 0%, rgba(0,0,0,0) 70%);
+}
+
+.goal-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    color: #c9a063;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px rgba(201, 160, 99, 0.2);
+}
+
+.goal-date span {
+    font-size: 20px;
+    font-weight: 700;
+    margin-left: 5px;
+}
+
+.goal-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+}
+
+.goal-text {
+    max-width: 520px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #cccccc;
+    line-height: 1.8;
+}
+
+/* バックホームボタン */
+.back-to-home {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.back-btn {
+    font-size: 12px;
+    color: #888888;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-btn:hover {
+    color: #c9a063;
+    opacity: 1;
+}
+
+/* ==========================================================================
+   entry.html 専用レスポンシブ（スマホ対応）
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 縦線を左側に寄せる */
+    .flow-container::before {
+        left: 20px;
+        transform: none;
+        bottom: 140px;
+    }
+    
+    /* 番号バッジを左側の線上に重ねる */
+    .flow-badge {
+        left: 20px;
+        transform: translateX(-50%);
+        width: 38px;
+        height: 38px;
+        font-size: 11px;
+    }
+    
+    /* 奇数・偶数関係なくすべてのカードを右側に寄せて横幅いっぱいにする */
+    .flow-step, 
+    .flow-step:nth-child(even) {
+        justify-content: flex-end;
+        margin-bottom: 45px;
+    }
+    
+    .flow-content {
+        width: calc(100% - 45px);
+        padding: 25px 20px;
+    }
+    
+    .entry-hero {
+        padding: 130px 20px 40px 20px;
+    }
+    
+    .entry-hero-main {
+        font-size: 22px;
+    }
+    
+    .goal-date {
+        font-size: 36px;
+    }
+    
+    .goal-title {
+        font-size: 17px;
+        line-height: 1.4;
+    }
+}
