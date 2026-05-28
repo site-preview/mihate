@@ -1133,6 +1133,157 @@ footer {
     100% { left: 100%; }
 }
 
+/* ==========================================================================
+   【新設】入会金無料の視覚的訴求・お得感演出スタイル
+   ========================================================================== */
+
+/* 期間限定特典バッジをグラデーションで特別感アップ */
+.campaign-badge.premium-highlight {
+    background: linear-gradient(135deg, #d4af37 0%, #b38f43 100%);
+    color: #000000;
+    border: none;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+.campaign-badge.premium-highlight i {
+    margin-right: 4px;
+}
+
+/* 料金訴求ディスプレイの親ボックス */
+.price-benefit-display {
+    max-width: 550px;
+    margin: 0 auto 35px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(201, 160, 99, 0.4);
+    padding: 25px 20px;
+    position: relative;
+    border-radius: 4px;
+}
+
+/* 「1期生限定」のちいさなラベル */
+.benefit-label {
+    font-size: 12px;
+    color: #c9a063;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+/* 金額を横並びにするフレキシブルボックス */
+.price-flex-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+/* 共通の金額アイテム */
+.price-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.price-item .p-label {
+    font-size: 11px;
+    color: #888888;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+/* 元の金額（打ち消し線） */
+.price-item.original .p-amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: #666666;
+    position: relative;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+/* スタイリッシュにバツ線（赤ではなくあえて暗いグレーで世界観を維持）を入れる */
+.price-item.original .p-amount::after {
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    width: calc(100% + 10px);
+    height: 2px;
+    background-color: #aa3333; /* 警告としての赤を少しトーンを落として配置 */
+    transform: rotate(-12deg);
+}
+.price-item.original .p-amount span {
+    font-size: 18px;
+    margin-right: 2px;
+}
+
+/* 矢印エリア */
+.price-arrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #c9a063;
+    gap: 2px;
+}
+.price-arrow i.fa-right-long {
+    font-size: 24px;
+}
+/* 注意を引くための小さなアイコンアニメーション */
+.price-arrow .em-flash {
+    font-size: 11px;
+    animation: pulse 1.5s infinite;
+}
+
+/* 特典後の金額（¥0を最大強調） */
+.price-item.privilege .p-label {
+    color: #000000;
+    background-color: #c9a063;
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-size: 10px;
+}
+.price-item.privilege .p-amount {
+    font-size: 52px; /* 圧倒的サイズ感 */
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    text-shadow: 0 0 20px rgba(201, 160, 99, 0.6); /* ゴールドのバックライト */
+    background: linear-gradient(135deg, #ffffff 50%, #c9a063 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* 文字自体を微かにゴールドグラデに */
+}
+
+/* 点滅アニメーション */
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 1; transform: scale(1.1); }
+    100% { opacity: 0.4; }
+}
+
+/* --------------------------------------------------------------------------
+   スマホ表示（レスポンシブ）での最適化
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+    .price-benefit-display {
+        padding: 20px 15px;
+        margin-bottom: 25px;
+    }
+    .price-flex-box {
+        gap: 15px;
+    }
+    .price-item.original .p-amount {
+        font-size: 20px;
+    }
+    .price-item.original .p-amount span {
+        font-size: 14px;
+    }
+    .price-item.privilege .p-amount {
+        font-size: 38px;
+    }
+    .price-arrow i.fa-right-long {
+        font-size: 18px;
+    }
+}
+
 /* スクロールアニメーション */
 .reveal-fade-up {
     opacity: 0;
@@ -2335,41 +2486,44 @@ footer {
 
 /* スマホ・タブレット用レスポンシブ調整 */
 @media (max-width: 768px) {
-    /* スマホでも2列横並びを維持、隙間を少し狭く */
+    /* 【修正】スマホ（SP）では1カラム（縦1列）に切り替え */
     .instructor-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 0 10px;
+        grid-template-columns: 1fr;
+        gap: 30px; /* カード同士の間隔を適度にあける */
+        padding: 0 15px;
     }
     
-    /* スマホ用にカード内のテキストサイズやパディングを小さく調整 */
+    /* 縦長になりすぎないよう最大幅を制限して中央に配置 */
+    .instructor-card {
+        max-width: 450px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* スマホ用にカード内のテキストサイズやパディングを微調整 */
     .instructor-card-info {
-        padding: 12px 10px;
+        padding: 20px 15px;
     }
     
     .card-role {
-        font-size: 8px;
-        letter-spacing: 0.5px;
-        margin-bottom: 2px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis; /* はみ出る場合は「...」にする */
+        font-size: 10px;
+        letter-spacing: 1px;
+        margin-bottom: 4px;
     }
     
     .card-name-ja {
-        font-size: 16px;
-        margin-bottom: 0;
+        font-size: 20px;
+        margin-bottom: 2px;
     }
     
     .card-name-en {
-        font-size: 10px;
-        margin-bottom: 10px;
+        font-size: 11px;
+        margin-bottom: 15px;
     }
     
-    /* スマホではプラスアイコンのみにしてスッキリさせる */
     .view-more-btn {
-        font-size: 10px;
-        gap: 3px;
+        font-size: 11px;
+        gap: 4px;
     }
     
     /* モーダルの中身（詳細）はスマホで見やすいように縦並びのままにします */
@@ -2396,6 +2550,8 @@ footer {
     .card-name-en {
         font-size: 9px;
     }
+
+    
 }
 
 /* ==========================================================================
@@ -2598,3 +2754,184 @@ footer {
     }
 }
 
+/* ==========================================================================
+   【視認性重視・コンパクト】PRICE セクションスタイル
+   ========================================================================== */
+.price-container {
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 導入リード（落ち着いたトーン） */
+.price-minimal-lead {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.price-minimal-lead p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.price-minimal-lead .price-sub-statement {
+    font-size: 13px;
+    color: #888888;
+    font-weight: 400;
+}
+
+/* 2カラムのコンパクトなグリッドレイアウト（スクロール量を抑える） */
+.price-compact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* 各クラスのカードスタイル：情報をすっきり3段構造に分ける */
+.p-compact-card {
+    background: #090909;
+    border: 1px solid #161616;
+    padding: 25px 30px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 160px; /* 高さを揃えて見やすく */
+}
+
+/* 1段目：クラス名 */
+.p-card-header {
+    margin-bottom: 12px;
+}
+
+.p-card-category {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    color: #666666;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.p-card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* 2段目：時間・詳細 */
+.p-card-body {
+    margin-bottom: 16px;
+}
+
+.p-card-time {
+    font-size: 13px;
+    color: #cccccc;
+    margin-bottom: 3px;
+}
+
+.p-card-tags {
+    font-size: 11px;
+    color: #666666;
+}
+
+/* 3段目：金額・換算 */
+.p-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid #131313;
+    padding-top: 14px;
+}
+
+.p-card-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+.p-card-price small {
+    font-size: 11px;
+    color: #666666;
+    font-weight: 500;
+}
+
+.p-card-calc {
+    font-size: 11px;
+    color: #888888;
+    font-weight: 500;
+}
+
+/* 【強調】練習生クラス：ギラギラさせず、静かにゴールドをあしらう */
+.p-card-featured {
+    border-color: rgba(201, 160, 99, 0.3);
+    background: linear-gradient(135deg, #0d0d0d 0%, #090909 100%);
+}
+
+.featured-color {
+    color: #c9a063 !important;
+}
+
+.featured-calc {
+    color: #bfa276;
+    font-weight: 600;
+}
+
+/* 【未定】ダンス特化クラス：目立たないように明度を下げる */
+.p-card-disabled {
+    opacity: 0.5;
+    border-style: dashed;
+}
+
+.opacity-dim {
+    color: #555555;
+}
+
+/* 下部注意書き */
+.price-minimal-note {
+    font-size: 11px;
+    color: #555555;
+    line-height: 1.7;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* --------------------------------------------------------------------------
+   レスポンス対応（スマホ表示時は1カラムにして縦にすっきり並べる）
+   -------------------------------------------------------------------------- */
+@media (max-width: 850px) {
+    .price-compact-grid {
+        grid-template-columns: 1fr; /* スマホ・タブレットは1列 */
+        gap: 15px;
+    }
+    
+    .p-compact-card {
+        padding: 20px 25px;
+        min-height: auto;
+    }
+    
+    .price-minimal-lead p {
+        font-size: 14px;
+        text-align: left;
+    }
+    
+    .price-minimal-lead .price-sub-statement {
+        font-size: 12px;
+    }
+    
+    .price-minimal-note {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .p-card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+}
