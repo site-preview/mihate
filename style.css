@@ -3645,3 +3645,148 @@ footer {
         font-size: 9px !important;
     }
 }
+
+/* ==========================================================================
+   PRICEセクション：ミニマル・ダーク版（高さ均一化・完全中央揃え・余白最適化）
+   ========================================================================== */
+
+/* PC版：横幅1200pxマックスの快適な3列レイアウト */
+.price-cards-wrap.mini-version {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 30px 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    /* 横に並ぶカードの縦幅（高さ）を自動的に一番高いものに揃える設定 */
+    align-items: stretch !important; 
+}
+
+/* カード単体のスタイル（無駄な余白を削り、すべての要素を完全に中央寄せ） */
+.price-card.mini {
+    position: relative !important;
+    background: rgba(20, 20, 22, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    /* 上下の内側余白をさらに詰め、無駄な間伸びをシャットアウト */
+    padding: 20px 12px !important; 
+    backdrop-filter: blur(8px) !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    
+    /* 縦幅が伸びても、中身のコンテンツを常に上下左右中央に配置する設定 */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    height: 100% !important; /* グリッドの高さいっぱいに広げる */
+}
+
+.price-card.mini:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(30, 30, 35, 0.8) !important;
+}
+
+/* クラス名タイトル */
+.price-card.mini .card-class-name {
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0 0 10px 0 !important; /* タイトル下の隙間をスタイリッシュに微調整 */
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* 金額エリアのグループコンテナ（真ん中寄せ） */
+.price-card.mini .card-price-group {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    margin: 0 !important; /* 余分な外側マージンを排除 */
+}
+
+/* メイン価格（中央寄せ） */
+.price-card.mini .card-main-price {
+    font-size: 21px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    margin: 0 auto 6px auto !important; /* 左右をautoにして強制センター */
+    text-align: center !important;
+    display: block !important;
+}
+
+.price-card.mini .period {
+    font-size: 12px !important;
+    color: #a0a0a5 !important;
+    font-weight: normal !important;
+}
+
+/* 「1回あたり〜」の記載（完全な中央揃えの徹底・下部余白のカット） */
+.price-card.mini .card-calc-box {
+    font-size: 12px !important;
+    color: #cccccc !important;
+    font-weight: 500 !important;
+    /* 左右を親要素に対して確実に真ん中に寄せるための設定 */
+    margin: 2px auto 0 auto !important; 
+    text-align: center !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: wrap !important; /* スマホで文字が折り返しても崩れないように */
+}
+
+.price-card.mini .calc-note {
+    font-size: 11px !important;
+    color: #a0a0a5 !important;
+    margin-left: 3px !important; /* 金額との間にほんの少しだけ隙間を空ける */
+}
+
+/* スマートフォン表示（画面幅767px以下） */
+@media screen and (max-width: 767px) {
+    .price-cards-wrap.mini-version {
+        grid-template-columns: repeat(2, 1fr) !important; /* 2列並びを維持 */
+        gap: 10px !important;
+        padding: 15px 10px !important;
+        /* スマホでも並んだ左右のカードの縦幅を完全に揃える */
+        align-items: stretch !important; 
+    }
+    
+    .price-card.mini {
+        /* スマホ用：内側の上下余白をさらに詰め、下のダボつきを完全にリセット */
+        padding: 14px 6px !important; 
+        border-radius: 8px !important;
+    }
+
+    .price-card.mini .card-class-name {
+        font-size: 12px !important; /* 2列でも文字が溢れないサイズ */
+        margin-bottom: 6px !important;
+        white-space: normal !important;
+        word-break: break-all !important;
+    }
+
+    .price-card.mini .card-main-price {
+        font-size: 16px !important;
+    }
+
+    .price-card.mini .period {
+        font-size: 10px !important;
+    }
+
+    .price-card.mini .card-calc-box {
+        font-size: 11px !important;
+    }
+
+    .price-card.mini .calc-note {
+        font-size: 9px !important;
+    }
+}
