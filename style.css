@@ -2935,3 +2935,713 @@ footer {
         gap: 5px;
     }
 }
+
+/* ==========================================================================
+   PRICE セクション（新規追加）
+   ========================================================================== */
+.price-container {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr; /* 左側（理由）を少し広めに割り当て */
+    gap: 60px;
+    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 左側：選ばれる理由 */
+.price-reason-box {
+    padding-right: 20px;
+}
+
+.reason-heading {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+}
+
+.reason-sub {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: #c9a063;
+    letter-spacing: 0.2em;
+    margin-bottom: 8px;
+}
+
+.reason-lead {
+    font-size: 14px;
+    color: #aaaaaa;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+.reason-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.reason-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.reason-number {
+    font-size: 24px;
+    font-weight: 900;
+    color: #c9a063;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1;
+    border-bottom: 2px solid #c9a063;
+    padding-bottom: 4px;
+}
+
+.reason-content h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.reason-content p {
+    font-size: 13px;
+    color: #888888;
+    line-height: 1.6;
+}
+
+/* 右側：料金カードレイアウト */
+.price-cards-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.price-card {
+    background-color: #111111;
+    border: 1px solid #222222;
+    padding: 35px 30px;
+    border-radius: 4px;
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.price-card:hover {
+    transform: translateY(-3px);
+    border-color: #444444;
+}
+
+/* アーティスト育成クラスを目立たせる（静かにゴールドをあしらう仕様） */
+.price-card.featured-card {
+    border-color: rgba(201, 160, 99, 0.4);
+    background: linear-gradient(135deg, #0f0f0f 0%, #070707 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.price-card.featured-card:hover {
+    border-color: #c9a063;
+}
+
+.card-badge {
+    position: absolute;
+    top: -12px;
+    right: 25px;
+    background-color: #c9a063;
+    color: #000000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+.card-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #888888;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.featured-card .card-tag {
+    color: #c9a063;
+}
+
+.card-class-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+/* メインの金額表示 */
+.card-main-price {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 10px;
+}
+
+.card-main-price .currency {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-right: 4px;
+}
+
+.card-main-price .amount {
+    font-size: 38px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+
+.card-main-price .period {
+    font-size: 13px;
+    color: #888888;
+    margin-left: 6px;
+}
+
+/* 1回あたりの料金換算エリア */
+.card-calc-box {
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px dashed #222222;
+    padding: 12px 15px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.featured-card .card-calc-box {
+    background-color: rgba(201, 160, 99, 0.02);
+    border-color: rgba(201, 160, 99, 0.15);
+}
+
+.calc-label {
+    font-size: 11px;
+    color: #666666;
+    font-weight: 500;
+}
+
+.calc-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.featured-card .calc-price {
+    color: #c9a063;
+}
+
+.calc-note {
+    font-size: 11px;
+    color: #666666;
+}
+
+/* カード内の含まれるサービス箇条書き */
+.card-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-top: 1px solid #222222;
+    padding-top: 20px;
+}
+
+.card-features li {
+    font-size: 12px;
+    color: #aaaaaa;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-features li i {
+    color: #666666;
+    font-size: 11px;
+}
+
+.featured-card .card-features li i {
+    color: #c9a063;
+}
+
+/* 下部注意書き */
+.price-bottom-note {
+    font-size: 12px;
+    color: #555555;
+    line-height: 1.8;
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+    text-align: left;
+}
+
+/* ==========================================================================
+   PRICE セクション レスポンシブ対応
+   ========================================================================== */
+@media (max-width: 992px) {
+    .price-container {
+        grid-template-columns: 1fr; /* タブレット以下は1カラムにして縦並びに */
+        gap: 50px;
+    }
+    .price-reason-box {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .reason-heading {
+        font-size: 24px;
+    }
+    .price-card {
+        padding: 30px 20px;
+    }
+    .card-main-price .amount {
+        font-size: 32px;
+    }
+    .sp-only {
+        display: block;
+    }
+}
+
+/* ==========================================================================
+   PRICE（料金プラン）セクションの修正スタイル
+   ========================================================================== */
+
+/* カード全体を包むコンテナ（PC時は3カラムで横並び） */
+.price-cards-wrap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+    align-items: start;
+}
+
+/* 料金カードの基本デザイン */
+.price-card {
+    background-color: #111111;
+    border: 1px solid #222222;
+    padding: 40px 30px;
+    border-radius: 4px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.price-card:hover {
+    border-color: #ffffff;
+    transform: translateY(-5px);
+}
+
+/* おすすめバッジ（RECOMMEND） */
+.card-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #d4af37 0%, #b38f43 100%);
+    color: #000000;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 4px 15px;
+    letter-spacing: 1px;
+    border-radius: 2px;
+}
+
+/* カード内の各テキスト要素 */
+.card-tag {
+    font-size: 11px;
+    color: #c9a063;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.card-class-name {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* 料金表示部分 */
+.card-main-price {
+    font-size: 36px;
+    font-weight: 800;
+    color: #ffffff;
+    border-bottom: 1px solid #222222;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: baseline;
+}
+
+.card-main-price .currency {
+    font-size: 20px;
+    margin-right: 4px;
+}
+
+.card-main-price .period {
+    font-size: 14px;
+    color: #888888;
+    margin-left: 6px;
+    font-weight: 500;
+}
+
+/* 1回あたり換算のボックス */
+.card-calc-box {
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.calc-label {
+    color: #888888;
+    margin-right: 8px;
+}
+
+.calc-price {
+    color: #c9a063;
+    font-weight: 700;
+}
+
+.calc-note {
+    color: #666666;
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
+}
+
+/* 特徴リスト（チェックマーク付き） */
+.card-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.card-features li {
+    font-size: 13px;
+    color: #cccccc;
+    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+}
+
+.card-features li i {
+    color: #c9a063;
+    margin-right: 10px;
+    margin-top: 3px;
+    font-size: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   PRICEセクション：レスポンシブ対応（スマホ・タブレット表示）
+   -------------------------------------------------------------------------- */
+@media (max-width: 960px) {
+    .price-cards-wrap {
+        grid-template-columns: repeat(2, 1fr); /* タブレット時は2カラム */
+        gap: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .price-cards-wrap {
+        grid-template-columns: 1fr; /* スマホ時は1カラム（縦並び） */
+        gap: 25px;
+    }
+    .price-card {
+        padding: 35px 20px;
+    }
+}
+
+/* PC版の横幅をグッと広げて開放感を出す */
+.price-cards-wrap.mini-version {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px; /* 少し広げてスタイリッシュに */
+    max-width: 1200px; /* 1000pxから1200pxへ拡張 */
+    margin: 0 auto;
+    padding: 30px 15px;
+}
+
+/* 赤をなくし、漆黒に溶け込む高級感のあるモノトーンデザインへ */
+.price-card.mini {
+    position: relative;
+    background: rgba(20, 20, 22, 0.6); /* 既存の真っ黒背景に綺麗に重なるシースルーブラック */
+    border: 1px solid rgba(255, 255, 255, 0.08); /* ギラつかない極薄の白ボーダー */
+    border-radius: 10px;
+    padding: 24px 15px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+/* ホバー時に少しだけ枠線が明るくなり、奥から浮き上がる演出 */
+.price-card.mini:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(30, 30, 35, 0.8);
+}
+
+/* 1回あたりの料金部分も、赤から上品なシルバー（淡いグレー）に変更 */
+.price-card.mini .card-calc-box {
+    font-size: 12px;
+    color: #cccccc; /* 落ち着いたトーン */
+    font-weight: 500;
+    margin-top: 4px;
+}
+
+/* ==========================================================================
+   PRICEセクション：ミニマル・ダーク版（PC3列・スマホ2列対応）
+   ========================================================================== */
+
+/* PC版：横幅1200pxマックスの快適な3列レイアウト */
+.price-cards-wrap.mini-version {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 30px 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* カード単体のスタイル（モノトーン・ダークデザイン） */
+.price-card.mini {
+    position: relative !important;
+    background: rgba(20, 20, 22, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    padding: 24px 15px !important;
+    text-align: center !important;
+    backdrop-filter: blur(8px) !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+}
+
+.price-card.mini:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(30, 30, 35, 0.8) !important;
+}
+
+/* クラス名タイトル */
+.price-card.mini .card-class-name {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0 0 12px 0 !important;
+    letter-spacing: 0.5px !important;
+}
+
+/* メイン価格 */
+.price-card.mini .card-main-price {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    margin-bottom: 6px !important;
+}
+
+.price-card.mini .period {
+    font-size: 12px !important;
+    color: #a0a0a5 !important;
+    font-weight: normal !important;
+}
+
+/* 1回あたり換算ボックス（上品なシルバーグレー） */
+.price-card.mini .card-calc-box {
+    font-size: 12px !important;
+    color: #cccccc !important;
+    font-weight: 500 !important;
+    margin-top: 4px !important;
+}
+
+.price-card.mini .calc-note {
+    font-size: 11px !important;
+    color: #a0a0a5 !important;
+}
+
+/* 【超重要】スマートフォン表示（画面幅767px以下）で確実に2カラムにする設定 */
+@media screen and (max-width: 767px) {
+    .price-cards-wrap.mini-version {
+        grid-template-columns: repeat(2, 1fr) !important; /* 強制的に2列に並べる */
+        gap: 10px !important; /* スマホ用に隙間をタイトに */
+        padding: 20px 10px !important;
+    }
+    
+    .price-card.mini {
+        padding: 16px 8px !important; /* 2列でもはみ出さないように左右の余白を小さく */
+        border-radius: 8px !important;
+    }
+
+    .price-card.mini .card-class-name {
+        font-size: 13px !important; /* 文字が溢れて見切れるのを防ぐために小さく調整 */
+        margin-bottom: 8px !important;
+        white-space: normal !important; /* 長い名前でも改行して枠内に収める */
+        word-break: break-all !important;
+    }
+
+    .price-card.mini .card-main-price {
+        font-size: 16px !important; /* 金額を見切れないサイズに */
+    }
+
+    .price-card.mini .period {
+        font-size: 10px !important;
+    }
+
+    .price-card.mini .card-calc-box {
+        font-size: 11px !important;
+    }
+
+    .price-card.mini .calc-note {
+        font-size: 9px !important;
+    }
+}
+
+
+/* ==========================================================================
+   PRICEセクション：ミニマル・ダーク版（完全中央揃え・PC3列・スマホ2列対応）
+   ========================================================================== */
+
+/* PC版：横幅1200pxマックスの快適な3列レイアウト */
+.price-cards-wrap.mini-version {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 30px 15px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* カード単体のスタイル（中央揃え・モノトーン・ダークデザイン） */
+.price-card.mini {
+    position: relative !important;
+    background: rgba(20, 20, 22, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 10px !important;
+    padding: 24px 15px !important;
+    text-align: center !important; /* すべての内容を中央揃え */
+    backdrop-filter: blur(8px) !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    
+    /* 中身のブロック要素も中央に寄せる設定 */
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.price-card.mini:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(30, 30, 35, 0.8) !important;
+}
+
+/* クラス名タイトル */
+.price-card.mini .card-class-name {
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #ffffff !important;
+    margin: 0 0 12px 0 !important;
+    letter-spacing: 0.5px !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+/* 金額を囲むグループ */
+.price-card.mini .card-price-group {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+}
+
+/* メイン価格 */
+.price-card.mini .card-main-price {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    line-height: 1 !important;
+    margin-bottom: 6px !important;
+    text-align: center !important;
+    display: inline-block !important;
+}
+
+.price-card.mini .period {
+    font-size: 12px !important;
+    color: #a0a0a5 !important;
+    font-weight: normal !important;
+    display: inline-block !important;
+}
+
+/* 1回あたり換算ボックス（上品なシルバーグレー） */
+.price-card.mini .card-calc-box {
+    font-size: 12px !important;
+    color: #cccccc !important;
+    font-weight: 500 !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+    width: 100% !important;
+}
+
+.price-card.mini .calc-note {
+    font-size: 11px !important;
+    color: #a0a0a5 !important;
+}
+
+/* スマートフォン表示（画面幅767px以下）で確実に2カラム＆中央揃え */
+@media screen and (max-width: 767px) {
+    .price-cards-wrap.mini-version {
+        grid-template-columns: repeat(2, 1fr) !important; /* 強制的に2列に並べる */
+        gap: 10px !important;
+        padding: 20px 10px !important;
+    }
+    
+    .price-card.mini {
+        padding: 16px 6px !important;
+        border-radius: 8px !important;
+    }
+
+    .price-card.mini .card-class-name {
+        font-size: 13px !important;
+        margin-bottom: 8px !important;
+        white-space: normal !important;
+        word-break: break-all !important;
+    }
+
+    .price-card.mini .card-main-price {
+        font-size: 16px !important;
+    }
+
+    .price-card.mini .period {
+        font-size: 10px !important;
+    }
+
+    .price-card.mini .card-calc-box {
+        font-size: 11px !important;
+    }
+
+    .price-card.mini .calc-note {
+        font-size: 9px !important;
+    }
+}
