@@ -197,7 +197,7 @@ nav ul li a {
 /* スクロールダウンの演出 */
 .scroll-down {
     position: absolute;
-    bottom: 85px;
+    bottom: 15px; /* 下からの距離を縮めて、LINEボタンの下（地面スレスレ）に配置します */
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
@@ -636,7 +636,226 @@ nav ul li a {
     font-weight: 600;
     color: #ffffff;
 }
+/* ==========================================================================
+   Studio About - 7つの強み (スクロール発火・時計回りアニメーション仕様)
+   ========================================================================== */
 
+/* 全体を綺麗に収めるコンテナ */
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* 左: 文章 / 右: 強みサークル */
+    gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- 【ベース】ゴールドの円形エリア --- */
+.about-features-grid {
+    position: relative;
+    width: 460px; 
+    height: 460px;
+    margin: 40px auto !important;
+    display: block !important; 
+}
+
+/* 中央のゴールドの細い真円 */
+.about-features-grid::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 260px; 
+    height: 260px;
+    border: 1px solid rgba(201, 160, 99, 0.35);
+    border-radius: 50%;
+    box-shadow: 0 0 25px rgba(201, 160, 99, 0.08);
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+}
+
+/* 💡 スクロールして画面に入ったら、中央のリングがじわっと広がる */
+.about-features-grid.is-animated::before {
+    animation: circleScaleIn 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* 強みカード共通：円周上に浮かぶ縦長チップデザイン */
+.feature-card {
+    position: absolute !important;
+    background: rgba(0, 0, 0, 0.82) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding: 12px 10px !important; 
+    border-radius: 14px !important;
+    display: flex !important;
+    flex-direction: column !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    gap: 6px !important; 
+    width: 110px !important; 
+    height: auto !important;
+    min-height: 0 !important;
+    z-index: 2;
+    cursor: default;
+    
+    /* 💡 初期状態は非表示（下から湧き上がる前の位置） */
+    opacity: 0;
+    transform: translate(-50%, -30%) scale(0.85);
+    transition: border-color 0.4s ease, background 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+/* 💡 スクロールして画面に入ったら（クラスがついたら）、初めてアニメーションを開始 */
+.about-features-grid.is-animated .feature-card {
+    animation: floatingReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* ホバーした時にゴールドに光って少し浮き上がる演出 */
+.about-features-grid.is-animated .feature-card:hover {
+    border-color: rgba(201, 160, 99, 0.8) !important;
+    background: rgba(201, 160, 99, 0.15) !important;
+    box-shadow: 0 0 15px rgba(201, 160, 99, 0.3);
+    margin-top: -5px !important;
+}
+
+/* 【配置 ＆ ⏰時計回り時間差（Delay）の指定】 */
+.feature-card:nth-child(1) { top: 7%;  left: 50%; animation-delay: 0.2s; }  /* 1. 真上 */
+.feature-card:nth-child(2) { top: 22%; left: 85%; animation-delay: 0.4s; }  /* 2. 右上 */
+.feature-card:nth-child(3) { top: 58%; left: 93%; animation-delay: 0.6s; }  /* 3. 右下 */
+.feature-card:nth-child(4) { top: 91%; left: 72%; animation-delay: 0.8s; }  /* 4. 真下右 */
+.feature-card:nth-child(5) { top: 91%; left: 28%; animation-delay: 1.0s; }  /* 5. 真下左 */
+.feature-card:nth-child(6) { top: 58%; left: 7%;  animation-delay: 1.2s; }  /* 6. 左下 */
+.feature-card:nth-child(7) { top: 22%; left: 15%; animation-delay: 1.4s; }  /* 7. 左上 */
+
+/* 内パーツ微調整 */
+.feature-icon-wrap {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important;
+    flex-shrink: 0;
+}
+.feature-icon-wrap i {
+    font-size: 16px !important; 
+    color: #c9a063 !important;
+}
+.feature-number {
+    display: none !important; 
+}
+.feature-card h4 {
+    font-size: 13px !important; 
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    margin: 0 !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.4 !important;
+    white-space: normal !important;
+    text-align: center !important; 
+}
+.feature-card p {
+    display: none !important;
+}
+
+/* ==========================================================================
+   アニメーション用のキーフレーム（演出の心臓部）
+   ========================================================================== */
+@keyframes circleScaleIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes floatingReveal {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -30%) scale(0.85);
+    }
+    70% {
+        transform: translate(-50%, -52%) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* --------------------------------------------------------------------------
+   レスポンシブ（タブレット・スマホ対応）
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-features-grid {
+        margin: 30px auto !important;
+    }
+}
+
+/* スマートフォン表示（画面幅767px以下） */
+@media screen and (max-width: 767px) {
+    .about-features-grid {
+        width: 380px !important;
+        height: 380px !important;
+        margin: 20px auto !important;
+    }
+
+    .about-features-grid::before {
+        display: block !important;
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .feature-card {
+        padding: 10px 8px !important;
+        gap: 4px !important;
+        width: 110px !important; 
+        border-radius: 12px !important;
+    }
+
+    .feature-card:nth-child(1) { top: 6%;  left: 50%; }
+    .feature-card:nth-child(2) { top: 22%; left: 85%; }
+    .feature-card:nth-child(3) { top: 58%; left: 92%; }
+    .feature-card:nth-child(4) { top: 92%; left: 71%; }
+    .feature-card:nth-child(5) { top: 92%; left: 29%; }
+    .feature-card:nth-child(6) { top: 58%; left: 8%;  }
+    .feature-card:nth-child(7) { top: 22%; left: 15%; }
+
+    .feature-icon-wrap i {
+        font-size: 14px !important; 
+    }
+    
+    .feature-card h4 {
+        font-size: 11px !important; 
+        line-height: 1.4 !important;
+        letter-spacing: 0px !important;
+    }
+}
+
+/* 超小型スマホ（iPhone SEなど横幅が360px未満） */
+@media screen and (max-width: 360px) {
+    .about-features-grid {
+        width: 320px !important;
+        height: 320px !important;
+    }
+    .about-features-grid::before {
+        width: 160px !important;
+        height: 160px !important;
+    }
+    .feature-card {
+        width: 92px !important; 
+        padding: 8px 4px !important;
+    }
+    .feature-card h4 {
+        font-size: 10px !important;
+    }
+}
 /* ==========================================================================
    スタジオアクセスセクション（最寄り駅特化版）
    ========================================================================== */
