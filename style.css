@@ -4009,3 +4009,98 @@ footer {
         font-size: 9px !important;
     }
 }
+
+/* --- スケジュール微調整（追加分） --- */
+.schedule-detail-notes {
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-left: 2px solid #fff;
+    border-radius: 0 4px 4px 0;
+}
+
+.schedule-detail-notes p {
+    font-size: 13px !important;
+    color: #cccccc !important;
+    line-height: 1.5;
+    margin: 2px 0;
+}
+
+.schedule-detail-notes .sub-note {
+    font-size: 11px !important;
+    color: #a0a0a5 !important;
+    margin-top: 4px;
+}
+
+/* 練習生などの文字を目立たせる */
+.lesson-name.highlight {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* 土曜日のお昼休憩表示 */
+.break-time-info {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px !important;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    margin: 10px 0;
+}
+
+.time-break {
+    font-size: 12px;
+    color: #888888;
+    font-family: 'Poppins', sans-serif;
+    margin-right: 15px;
+}
+
+.break-text {
+    font-size: 12px;
+    color: #888888;
+}
+
+/* 日曜日のボックスデザイン */
+.sunday-box {
+    background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sunday-content {
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.sunday-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+}
+
+.sunday-desc {
+    font-size: 13px;
+    color: #aaaaaa;
+    line-height: 1.6;
+}
+
+/* スマホ表示での調整 */
+@media screen and (max-width: 767px) {
+    .schedule-detail-notes {
+        padding: 6px 10px;
+    }
+    .schedule-detail-notes p {
+        font-size: 12px !important;
+    }
+    .sunday-content {
+        padding: 20px 15px;
+    }
+    .sunday-title {
+        font-size: 15px;
+    }
+    .sunday-desc {
+        font-size: 12px;
+    }
+}
