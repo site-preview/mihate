@@ -4105,40 +4105,175 @@ footer {
     }
 }
 
-/* --- スマホ版での7つの強みの横揺れ・はみ出しを解消 --- */
+/* ==========================================================================
+   7つの強み（ABOUT FEATURES）PC版：配置固定（アニメーションなし）
+   ========================================================================== */
+.about-features-grid {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 80px auto 0;
+}
+
+/* 中央のゴールドリング */
+.about-features-grid::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320px;
+    height: 320px;
+    border: 1px solid rgba(201, 160, 99, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* 各強みカード（PC版・配置固定表示） */
+.about-features-grid .feature-card {
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    background: rgba(17, 17, 17, 0.9);
+    border: 1px solid rgba(201, 160, 99, 0.5);
+    border-radius: 50%;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    transition: border-color 0.3s, transform 0.3s;
+
+    /* 💡 最初から100%表示し、中央を基準に正しく配置 */
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* マウスホバー時の演出（PCのみ：ふわっと浮き上がる高級感は維持） */
+@media screen and (min-width: 768px) {
+    .about-features-grid .feature-card:hover {
+        border-color: #c9a063;
+        transform: translate(-50%, -50%) scale(1.08) !important;
+        box-shadow: 0 12px 40px rgba(201, 160, 99, 0.2);
+    }
+}
+
+/* PC版：各カードの円形配置座標（最初から固定） */
+.about-features-grid .feature-card:nth-child(1) { top: 0%;   left: 50%; }
+.about-features-grid .feature-card:nth-child(2) { top: 22%;  left: 88%; }
+.about-features-grid .feature-card:nth-child(3) { top: 64%;  left: 95%; }
+.about-features-grid .feature-card:nth-child(4) { top: 96%;  left: 71%; }
+.about-features-grid .feature-card:nth-child(5) { top: 96%;  left: 29%; }
+.about-features-grid .feature-card:nth-child(6) { top: 64%;  left: 5%;  }
+.about-features-grid .feature-card:nth-child(7) { top: 22%;  left: 12%; }
+
+/* アイコンとテキスト */
+.about-features-grid .feature-icon-wrap {
+    margin-bottom: 5px;
+}
+.about-features-grid .feature-icon-wrap i {
+    font-size: 24px;
+    color: #c9a063;
+}
+.about-features-grid .feature-card h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+
+/* ==========================================================================
+   スマートフォン表示（画面幅767px以下）円形配置・配置固定（アニメーションなし）
+   ========================================================================== */
 @media screen and (max-width: 767px) {
-    /* 1. カード全体を囲うグリッドの左右余白を調整 */
+    
+    /* 1. 7つの強み全体のサークルエリア */
     .about-features-grid {
-        gap: 15px !important;
-        padding: 10px 5px !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow: hidden; /* はみ出しを強制カット */
+        display: block !important;
+        width: 270px !important;
+        height: 270px !important;
+        margin: 50px auto !important;
+        padding: 0 !important;
+        position: relative !important;
+        overflow: visible !important;
     }
 
-    /* 2. 円形カードが画面幅を超えないようにサイズを一回り小さく自動調整 */
+    /* 中央のゴールドの細い真円リング */
+    .about-features-grid::before {
+        display: block !important;
+        width: 130px !important;
+        height: 130px !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        opacity: 1 !important;
+    }
+
+    /* 2. 各強みカード共通の設定 */
     .about-features-grid .feature-card {
-        width: 155px !important;  /* スマホの2列にピッタリ収まるサイズに縮小 */
-        height: 155px !important; /* 正円を維持 */
-        padding: 15px 8px !important;
+        position: absolute !important;
+        width: 74px !important;
+        height: 74px !important;
+        min-height: auto !important;
+        background: rgba(17, 17, 17, 0.95) !important;
+        border: 1px solid rgba(201, 160, 99, 0.45) !important;
+        border-radius: 12px !important;
+        padding: 6px 4px !important;
+        
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 3px !important;
+        
+        /* 💡 スマホ版：最初から100%表示し、中央を基準に固定配置 */
+        opacity: 1 !important;
+        transform: translate(-50%, -50%) scale(1) !important;
+        animation: none !important;
+    }
+
+    /* スマホ版：各カードの円形配置座標（最初から固定） */
+    .about-features-grid .feature-card:nth-child(1) { top: 0%; left: 50%; }
+    .about-features-grid .feature-card:nth-child(2) { top: 22%; left: 89%; }
+    .about-features-grid .feature-card:nth-child(3) { top: 65%; left: 96%; }
+    .about-features-grid .feature-card:nth-child(4) { top: 97%; left: 72%; }
+    .about-features-grid .feature-card:nth-child(5) { top: 97%; left: 28%; }
+    .about-features-grid .feature-card:nth-child(6) { top: 65%; left: 4%;  }
+    .about-features-grid .feature-card:nth-child(7) { top: 22%; left: 11%; }
+
+    /* 4. 各アイコンのサイズ調整 */
+    .about-features-grid .feature-icon-wrap {
+        width: auto !important;
+        height: auto !important;
+        margin-bottom: 0 !important;
+    }
+    .about-features-grid .feature-icon-wrap i {
+        font-size: 13px !important;
+        color: #c9a063 !important;
+    }
+    
+    /* 5. 強みのテキスト（h4） */
+    .about-features-grid .feature-card h4 {
+        font-size: 8.5px !important;
+        font-weight: 500 !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.4px !important;
+        text-align: center !important;
+        white-space: normal !important;
+        width: 100% !important;
         margin: 0 auto !important;
     }
+}
 
-    /* 3. アイコンのサイズと余白をスマホ用に最適化 */
-    .about-features-grid .feature-icon-wrap {
-        width: 45px !important;
-        height: 45px !important;
-        margin-bottom: 8px !important;
-    }
-
-    .about-features-grid .feature-icon-wrap i {
-        font-size: 18px !important;
-    }
-
-    /* 4. 丸の中の文字がはみ出さないようにフォントサイズを微調整 */
-    .about-features-grid .feature-card h4 {
-        font-size: 11px !important;
-        line-height: 1.4 !important;
-        white-space: normal !important; /* しっかり折り返す */
-    }
+/* 超小型スマートフォン（360px以下）の最終保険 */
+@media screen and (max-width: 360px) {
+    .about-features-grid { width: 230px !important; height: 230px !important; }
+    .about-features-grid .feature-card { width: 66px !important; height: 66px !important; }
+    .about-features-grid .feature-card h4 { font-size: 7.5px !important; }
 }
