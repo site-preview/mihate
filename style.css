@@ -4104,3 +4104,41 @@ footer {
         font-size: 12px;
     }
 }
+
+/* --- スマホ版での7つの強みの横揺れ・はみ出しを解消 --- */
+@media screen and (max-width: 767px) {
+    /* 1. カード全体を囲うグリッドの左右余白を調整 */
+    .about-features-grid {
+        gap: 15px !important;
+        padding: 10px 5px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow: hidden; /* はみ出しを強制カット */
+    }
+
+    /* 2. 円形カードが画面幅を超えないようにサイズを一回り小さく自動調整 */
+    .about-features-grid .feature-card {
+        width: 155px !important;  /* スマホの2列にピッタリ収まるサイズに縮小 */
+        height: 155px !important; /* 正円を維持 */
+        padding: 15px 8px !important;
+        margin: 0 auto !important;
+    }
+
+    /* 3. アイコンのサイズと余白をスマホ用に最適化 */
+    .about-features-grid .feature-icon-wrap {
+        width: 45px !important;
+        height: 45px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .about-features-grid .feature-icon-wrap i {
+        font-size: 18px !important;
+    }
+
+    /* 4. 丸の中の文字がはみ出さないようにフォントサイズを微調整 */
+    .about-features-grid .feature-card h4 {
+        font-size: 11px !important;
+        line-height: 1.4 !important;
+        white-space: normal !important; /* しっかり折り返す */
+    }
+}
