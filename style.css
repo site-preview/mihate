@@ -455,7 +455,9 @@ nav ul li a {
     color: #dddddd;
 }
 
-/* クラス紹介グリッド (PC版: 3カラム横並び) */
+/* ==========================================================================
+   クラス紹介グリッド ( style.css 445行目付近〜 )
+   ========================================================================== */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -475,10 +477,12 @@ nav ul li a {
     transition: border-color 0.3s;
 }
 
+/* ホバー時に枠線を白にする（既存スタイル） */
 .grid-item:hover {
     border-color: #ffffff;
 }
 
+/* --- 背景画像の設定 --- */
 .grid-item-img {
     position: absolute;
     top: 0;
@@ -491,14 +495,22 @@ nav ul li a {
     transition: transform 0.5s, opacity 0.5s;
 }
 
+/* ホバー時に画像を拡大・明るくする（既存スタイル） */
 .grid-item:hover .grid-item-img {
     transform: scale(1.05);
     opacity: 0.7;
 }
 
+/* --- コンテンツエリアの設定 --- */
 .grid-item-content {
     position: relative;
     z-index: 2;
+    /* 矢印を絶対配置するための基準にする */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 .grid-item-tag {
@@ -510,11 +522,71 @@ nav ul li a {
     font-weight: 700;
     display: inline-block;
     margin-bottom: 10px;
+    align-self: flex-start; /* タグ自体の幅に縮める */
 }
 
 .grid-item-title {
     font-size: 22px;
     font-weight: 700;
+    line-height: 1.3;
+    padding-right: 40px; /* 矢印と重ならないように右側に余白を作る */
+}
+
+/* ==========================================================================
+   【新規追加】画像右下の矢印アイコン
+   ========================================================================== */
+.grid-item-arrow {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 255, 255, 0.9); /* 全クラス共通：通常時は少し透明な白 */
+    color: #000000; /* アイコン色は黒 */
+    border-radius: 50%; /* 正円にする */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* 軽い影 */
+}
+
+/* --- ホバー時のアニメーション --- */
+
+.grid-item:hover .grid-item-arrow {
+    background-color: #c9a063; /* ホバーした時にゴールドになります */
+    color: #000000;
+    transform: scale(1.1);
+}
+/* 2. 矢印の中のアイコン（iタグ）を右に動かす */
+.grid-item:hover .grid-item-arrow i {
+    animation: arrowSlide 0.6s ease-in-out infinite;
+}
+
+/* 矢印が右にスライドするキーフレームアニメーション定義 */
+@keyframes arrowSlide {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+    100% { transform: translateX(0); }
+}
+
+/* --------------------------------------------------------------------------
+   スマホ表示（レスポンシブ）での調整（ style.css 768px以下のメディアクエリ内 ）
+   --------------------------------========================================== */
+@media (max-width: 768px) {
+.grid-item-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        right: -5px;
+        bottom: -5px;
+    }
+    
+    .grid-item-title {
+        font-size: 18px;
+        padding-right: 30px;
+    }
 }
 
 /* 講師詳細セクション */
@@ -948,11 +1020,15 @@ nav ul li a {
     }
 }
 
-/* コンタクト・SNSセクション */
+/* --- ご提示いただいたCSS（一部追記） --- */
+
 .contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
+    /* display: grid; は1カラムにするため解除します */
+    display: block; 
+    
+    /* 横に広がりすぎないように最大幅を設定し、中央寄せにします */
+    max-width: 600px; 
+    margin: 0 auto;
 }
 
 .contact-box {
@@ -962,12 +1038,16 @@ nav ul li a {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
+    /* スマホなどで画面端にピタッとくっつかないように調整 */
+    width: 100%; 
 }
 
 .contact-box h3 {
     font-size: 24px;
     margin-bottom: 15px;
     font-weight: 700;
+    text-align: center; 
 }
 
 .contact-box p {
@@ -975,6 +1055,7 @@ nav ul li a {
     font-size: 14px;
     line-height: 1.6;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .cta-buttons {
@@ -987,11 +1068,15 @@ nav ul li a {
     display: block;
     text-align: center;
     width: 100%;
+    padding: 15px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all 0.3s;
 }
 
 .btn-line {
     background-color: #06C755;
-    border-color: #06C755;
+    border: 1px solid #06C755; 
     color: #ffffff;
 }
 
@@ -1216,29 +1301,67 @@ footer {
     position: relative;
 }
 
+/* ==========================================
+   ▼ 6/9, 7/9（active）のスタイル
+========================================== */
 .timeline-step.active {
     border-color: #c9a063;
     background: rgba(201, 160, 99, 0.05);
 }
 
-.step-date {
+/* 【変更】6/9, 7/9 の日付：すっきりしたゴールド文字に */
+.timeline-step.active .step-date {
     font-size: 18px;
     font-weight: 800;
     color: #c9a063;
     display: block;
     margin-bottom: 5px;
     letter-spacing: 1px;
+    background-color: transparent; /* 背景なし */
+    padding: 0;
 }
 
-.timeline-step.active .step-date {
+/* ==========================================
+   ▼ 9/3（shining-step）のスタイル
+========================================== */
+.timeline-step.shining-step {
+    border-color: #c9a063;
+    overflow: hidden;
+}
+
+/* 【変更】9/3 の日付：座布団（背景ゴールド・黒文字）に */
+.timeline-step.shining-step .step-date {
     background-color: #c9a063;
     color: #000000;
     display: inline-block;
     padding: 2px 8px;
     font-size: 14px;
     margin-bottom: 8px;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
+/* 9/3 のみに適用されるきらきらアニメーション */
+.timeline-step.shining-step::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right, 
+        rgba(255, 255, 255, 0) 0%, 
+        rgba(201, 160, 99, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    animation: cardShine 3s infinite linear;
+}
+
+/* ==========================================
+   ▼ その他共通パーツ
+========================================== */
 .step-label {
     font-size: 14px;
     font-weight: 700;
@@ -1256,29 +1379,6 @@ footer {
 .timeline-arrow {
     color: #444444;
     font-size: 18px;
-}
-
-/* グランドオープンのきらきらアニメーション */
-.timeline-step.shining-step {
-    border-color: #c9a063;
-    overflow: hidden;
-}
-
-.timeline-step.shining-step::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(
-        to right, 
-        rgba(255, 255, 255, 0) 0%, 
-        rgba(201, 160, 99, 0.3) 50%,
-        rgba(255, 255, 255, 0) 100%
-    );
-    transform: skewX(-25deg);
-    animation: cardShine 3s infinite linear;
 }
 
 @keyframes cardShine {
