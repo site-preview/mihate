@@ -4377,3 +4377,349 @@ footer {
     .about-features-grid .feature-card { width: 66px !important; height: 66px !important; }
     .about-features-grid .feature-card h4 { font-size: 7.5px !important; }
 }
+
+/* ==========================================================================
+   クラス紹介画像用のリボン装飾
+   ========================================================================== */
+/* リボンを画像の枠内に絶対配置するための基準を設定 */
+.grid-item {
+    position: relative;
+    overflow: hidden; /* 画像の角丸からはみ出るリボンをカット */
+}
+
+/* リボン本体のスタイル */
+.class-ribbon {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    
+    /* 高級感のあるゴールドのグラデーション */
+    background: linear-gradient(135deg, #d4af37 0%, #c9a063 50%, #b38f4d 100%);
+    color: #000000; /* 黒文字で視認性を確保 */
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    
+    /* 内側の余白と角丸 */
+    padding: 5px 12px;
+    
+    /* 立体感と視認性を高めるシャドウ */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    
+    /* 少しだけ浮かび上がるようなアニメーションの準備 */
+    transition: transform 0.3s ease, background 0.3s ease;
+    pointer-events: none; /* リボン自体がクリックの邪魔をしないようにする */
+}
+
+/* カード全体がホバーされたときのリボンの連動エフェクト */
+.grid-item:hover .class-ribbon {
+    transform: scale(1.05) translateY(-2px);
+    background: linear-gradient(135deg, #ffe082 0%, #d4af37 100%);
+}
+
+/* スマホ表示（画面幅が狭いとき）の調整 */
+@media (max-width: 480px) {
+    .class-ribbon {
+        top: 8px;
+        left: 8px;
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}
+
+/* ==========================================================================
+   モーダル最下部 公式LINE予約誘導エリア
+   ========================================================================== */
+.modal-line-cta {
+    margin-top: 30px;
+    padding: 20px;
+    background: #0a0a0a;
+    border: 1px solid #1f2d24; /* ほんのり緑がかったダーク境界線 */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* 左側：テキストエリア */
+.modal-line-cta .cta-text-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.modal-line-cta .cta-sub {
+    font-size: 11px;
+    font-weight: 700;
+    color: #c9a063; /* ゴールド */
+    letter-spacing: 0.5px;
+}
+
+.modal-line-cta .cta-main {
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+}
+
+/* 右側：LINEボタン */
+.modal-line-cta .cta-line-btn {
+    background: #06c755; /* LINEグリーン */
+    color: #ffffff !important;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(6, 199, 85, 0.25);
+    opacity: 1 !important; /* グローバル設定のhoverでの不透明度を上書き */
+}
+
+/* ボタンのホバーエフェクト（少し光る感じに） */
+.modal-line-cta .cta-line-btn:hover {
+    background: #05b34c;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(6, 199, 85, 0.4);
+}
+
+.modal-line-cta .cta-line-btn i {
+    font-size: 16px;
+}
+
+/* スマホ用のレイアウト調整（縦並びにする） */
+@media (max-width: 576px) {
+    .modal-line-cta {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+        gap: 15px;
+    }
+    
+    .modal-line-cta .cta-text-wrap {
+        align-items: center;
+    }
+    
+    .modal-line-cta .cta-main {
+        font-size: 13px;
+    }
+    
+    .modal-line-cta .cta-line-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px;
+        font-size: 13px;
+    }
+}
+
+/* ==========================================================================
+   モーダル (クラス詳細) - スクロール＆閉じるボタン固定版
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px; /* 上下の余白を少し広げて、スクロール時に上下に空間を持たせる */
+    
+    /* ★追加：中身が長くなったらこの背景エリア自体をスクロールできるようにする */
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* スマホでのスクロールを滑らかにする */
+}
+
+.modal-overlay.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-window {
+    background-color: #111111;
+    border: 1px solid #c9a063; /* アカデミーのゴールド色 */
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    padding: 50px 40px 40px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    transform: translateY(30px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    
+    /* ★追加：縦長になったとき、自動的に上下中央に配置されスクロールできるようにする */
+    margin: auto;
+}
+
+.modal-overlay.is-active .modal-window {
+    transform: translateY(0);
+}
+
+/* ★変更：閉じるボタンを画面固定（fixed）にする */
+.modal-close {
+    position: fixed;
+    /* モーダル枠（max-width: 600px）の右上付近に重なるよう調整 */
+    top: 30px;
+    right: 30px;
+    
+    /* 背景と重なっても見やすいよう、半透明の黒丸にして少し高級感をプラス */
+    background: rgba(17, 17, 17, 0.8);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(201, 160, 99, 0.3); /* ゴールドをほんのり */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    color: #c9a063; /* ゴールド */
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 210; /* コンテンツよりさらに手前に表示 */
+}
+
+.modal-close:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+    transform: rotate(90deg); /* ホバー時に少し回る演出 */
+}
+
+/* モーダル内コンテンツ */
+.modal-tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    background-color: #c9a063;
+    color: #000000;
+    padding: 3px 8px;
+    font-weight: 700;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.modal-title {
+    font-size: 26px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    line-height: 1.3;
+}
+
+.modal-desc {
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+/* 料金・詳細テーブル */
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.modal-table tr {
+    border-bottom: 1px solid #222222;
+}
+
+.modal-table tr:last-child {
+    border-bottom: none;
+}
+
+.modal-table th, .modal-table td {
+    padding: 15px 0;
+    text-align: left;
+}
+
+.modal-table th {
+    width: 80px;
+    color: #888888;
+    font-weight: 700;
+}
+
+.modal-table td {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.modal-table td small {
+    color: #888888;
+    font-weight: 400;
+    margin-left: 5px;
+}
+
+/* スマホ用調整 */
+@media (max-width: 500px) {
+    .modal-overlay {
+        padding: 20px 10px; /* スマホ時は画面端の余白をタイトに */
+    }
+    .modal-window {
+        padding: 40px 20px 30px;
+    }
+    .modal-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    .modal-desc {
+        font-size: 13px;
+    }
+    .modal-table th, .modal-table td {
+        padding: 12px 0;
+        font-size: 13px;
+    }
+    /* スマホ用の閉じるボタン位置微調整 */
+    .modal-close {
+        top: 15px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+}
+
+/* モーダル表示時に背景のスクロールを止める */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* クラスモーダルのオーバーレイ（IDをclass-modalに変更したためクラス名等で調整） */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-overlay.is-active {
+    display: flex;
+}
+
+/* モーダルの中身をスクロール可能にする重要設定 */
+.modal-window {
+    background-color: #111111;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh; /* 画面全体の90%の高さに収める */
+    overflow-y: auto; /* 溢れた場合に縦スクロールバーを出す */
+    padding: 40px;
+    position: relative;
+    border: 1px solid #222222;
+}

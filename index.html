@@ -62,7 +62,8 @@
                 <li><a href="#news">News</a></li>
                 <li><a href="#classes">Classes</a></li>
                 <li><a href="#instructors">Instructor</a></li>
-                <li><a href="#schedule">Schedule</a></li>
+                <li><a href="#price">Price</a></li>
+                <!-- <li><a href="#schedule">Schedule</a></li> -->
                 <li><a href="#access">Access</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -237,7 +238,8 @@
     <h2 class="section-title reveal-fade-up">Classes</h2>
     <div class="grid-container">
         
-        <div class="grid-item" data-modal="artist" style="cursor: pointer;">
+        <div class="grid-item js-modal-open" data-modal="artist" style="cursor: pointer;">
+        <div class="class-ribbon">先行レッスン予約受付中</div>
             <img src="img/class_01.jpg" alt="Dance" class="grid-item-img">
             <div class="grid-item-content">
                 <span class="grid-item-tag">アーティスト育成クラス</span>
@@ -248,7 +250,8 @@
             </div>
         </div>
 
-        <div class="grid-item" data-modal="creator" style="cursor: pointer;">
+        <div class="grid-item js-modal-open" data-modal="creator" style="cursor: pointer;">
+        <div class="class-ribbon">先行レッスン予約受付中</div>
             <img src="img/class_02.jpg" alt="Dance" class="grid-item-img">
             <div class="grid-item-content">
                 <span class="grid-item-tag">作曲家育成クラス</span>
@@ -259,7 +262,8 @@
             </div>
         </div>
 
-        <div class="grid-item" data-modal="trainee" style="cursor: pointer;">
+        <div class="grid-item js-modal-open" data-modal="trainee" style="cursor: pointer;">
+        <div class="class-ribbon">先行レッスン予約受付中</div>
             <img src="img/class_03.jpg" alt="Vocal" class="grid-item-img">
             <div class="grid-item-content">
                 <span class="grid-item-tag">練習生クラス</span>
@@ -270,7 +274,7 @@
             </div>
         </div>
 
-        <div class="grid-item" data-modal="korean" style="cursor: pointer;">
+        <div class="grid-item js-modal-open" data-modal="korean" style="cursor: pointer;">
             <img src="img/class_04.jpg" alt="Korean" class="grid-item-img">
             <div class="grid-item-content">
                 <span class="grid-item-tag">韓国語クラス</span>
@@ -281,7 +285,8 @@
             </div>
         </div>
 
-        <div class="grid-item" data-modal="dance-special" style="cursor: pointer;">
+        <div class="grid-item js-modal-open" data-modal="dance-special" style="cursor: pointer;">
+        <div class="class-ribbon">先行レッスン予約受付中</div>
             <img src="img/class_05.jpg" alt="Dance Special" class="grid-item-img">
             <div class="grid-item-content">
                 <span class="grid-item-tag">ダンス特化クラス</span>
@@ -477,7 +482,7 @@
         </div>
     </div>
 
-<section id="schedule" class="section">
+<!-- <section id="schedule" class="section">
         <h2 class="section-title">LESSON SCHEDULE</h2>
         <div class="schedule-table-wrap">
             <table class="schedule-table">
@@ -563,7 +568,7 @@
                 </tbody>
             </table>
         </div>
-    </section>
+    </section> -->
 
     <section class="section" id="price">
     <h2 class="section-title reveal-fade-up">Price</h2>
@@ -834,7 +839,7 @@
         </div>
     </footer>
 
-    <script>
+   <script>
         // 1. ハンバーガーメニューの開閉制御
         const menuBtn = document.getElementById('js-menu-btn');
         const nav = document.getElementById('js-nav');
@@ -876,9 +881,7 @@
             revealObserver.observe(element);
         });
 
-        
-
-// 3. クラス詳細モーダルの制御
+        // 3. クラス詳細モーダルのデータオブジェクト
         const modalData = {
             artist: {
                 tag: "アーティスト育成クラス",
@@ -886,7 +889,10 @@
                 body: `
                     <p class="modal-desc">プロのアーティストとしてステージに立つための総合クラス。ボーカル・ダンス・魅せ方の全てを第一線で活躍するプロが指導します。</p>
                     <table class="modal-table">
-                        <tr><th>月謝</th><td>¥35,000 <small>(税込)</small></td></tr>
+                        <tr><th>内容</th><td>ボーカル・ダンス・総合クリエイティブ</td></tr>
+                        <tr><th>年齢制限</th><td>なし</td></tr>
+                        <tr><th>所要時間</th><td>1時間30分<small>（月4回）</small></td></tr>
+                        <tr><th>定員</th><td>各クラス10名</td></tr>
                         <tr>
                             <th>日程</th>
                             <td>
@@ -896,10 +902,25 @@
                                         <span class="time-text">18:00~19:30</span>
                                     </div>
                                 </div>
+                                <div class="modal-schedule-list">
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">土曜</span>
+                                        <span class="time-text">18:00~19:30</span>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
-                        <tr><th>年齢制限</th><td>なし</td></tr>
+                        <tr><th>月謝</th><td>¥35,000 <small>(税込)</small></td></tr>
                     </table>
+                    <div class="modal-line-cta">
+                        <div class="cta-text-wrap">
+                            <span class="cta-sub">＼ 7～8月限定のチャンス！ ／</span>
+                            <p class="cta-main">先行レッスン予約受付中！</p>
+                        </div>
+                        <a href="https://line.me/R/ti/p/@あなたのLINEのID" target="_blank" rel="noopener noreferrer" class="cta-line-btn">
+                            <i class="fa-brands fa-line"></i> 公式LINEから予約する
+                        </a>
+                    </div>
                 `
             },
             creator: {
@@ -907,20 +928,23 @@
                 title: "LYRIC / CREATE",
                 body: `
                     <p class="modal-desc">自らの世界を形にする、作詞・作曲・サウンドクリエイトに特化したクラス。時代を捉える楽曲制作のノウハウを習得します。</p>
-                    <table class="modal-table">
-                        <tr><th>月謝</th><td>¥35,000 <small>(税込)</small></td></tr>
+                    <table class="modal-table">                        
+                        <tr><th>内容</th><td>作詞・作曲・サウンドクリエイト</td></tr>
+                        <tr><th>年齢制限</th><td>なし</td></tr>
+                        <tr><th>所要時間</th><td>1時間30分<small>（月4回）</small></td></tr>
+                        <tr><th>定員</th><td>10名</td></tr>
                         <tr>
                             <th>日程</th>
                             <td>
                                 <div class="modal-schedule-list">
                                     <div class="modal-schedule-item">
                                         <span class="day-badge">木曜</span>
-                                        <span class="time-text">19:30~21:00</span>
+                                        <span class="time-text">19:45~21:15</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        <tr><th>年齢制限</th><td>なし</td></tr>
+                        <tr><th>月謝</th><td>¥35,000 <small>(税込)</small></td></tr>
                     </table>
                 `
             },
@@ -930,81 +954,98 @@
                 body: `
                     <p class="modal-desc">世界に通用するダンス・ボーカル技能を習得し、大手事務所への所属を目指すバックアップクラスです。</p>
                     <table class="modal-table">
-                        <tr><th>月謝</th><td>¥42,000 <small>(税込)</small></td></tr>
+                        <tr><th>内容</th><td>ダンス・ボーカル</td></tr>
+                        <tr><th>年齢制限</th><td>9歳〜19歳<small> ※入会時</small></td></tr>
+                        <tr><th>所要時間</th><td>2時間30分<small>（ダンス1時間半・ボーカル1時間）</small></td></tr>
+                        <tr><th>定員</th><td>各クラス25名（ボーカルは8〜9名）</td></tr>
                         <tr>
                             <th>日程</th>
                             <td>
                                 <div class="modal-schedule-list">
                                     <div class="modal-schedule-item">
                                         <span class="day-badge">金曜</span>
-                                        <span class="time-text">18:00 ～ 21:00</span>
+                                        <span class="time-text">17:00 ～ 18:30</span>
                                         <span class="class-name">練習生 Aクラス</span>
                                     </div>
                                     <div class="modal-schedule-item">
-                                        <span class="day-badge">土曜</span>
-                                        <span class="time-text">10:00 ～ 13:00</span>
+                                        <span class="day-badge">金曜</span>
+                                        <span class="time-text">20:00 ～ 21:30</span>
                                         <span class="class-name">練習生 Bクラス</span>
                                     </div>
                                     <div class="modal-schedule-item">
                                         <span class="day-badge">土曜</span>
-                                        <span class="time-text">18:00 ～ 21:00</span>
-                                        <span class="class-name">練習生 Cクラス</span>
+                                        <span class="time-text">PM</span>
+                                        <span class="class-name">ボーカル少人数</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        <tr><th>年齢制限</th><td>あり（9歳〜19歳）</td></tr>
+                        <tr><th>月謝</th><td>¥42,000 <small>(税込)</small></td></tr>
                     </table>
                 `
             },
-            // ここから追加：韓国語クラス
             korean: {
                 tag: "韓国語クラス",
                 title: "KOREAN / GLOBAL",
                 body: `
                     <p class="modal-desc">グローバルな活動を見据え、実践的な韓国語を基礎から学ぶクラスです。少人数制で一人ひとりに合わせた丁寧な指導を行います。</p>
                     <table class="modal-table">
-                        <tr><th>月謝</th><td>¥8,800 <small>(税込) / 月3回 (各1時間)</small></td></tr>
+                        <tr><th>内容</th><td>韓国語基礎・応用</td></tr>
+                        <tr><th>年齢制限</th><td>なし</td></tr>
+                        <tr><th>所要時間</th><td>1時間</td></tr>
+                        <tr><th>定員</th><td>各クラス6名</td></tr>
                         <tr>
                             <th>日程</th>
                             <td>
+                              <div class="modal-schedule-list">
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">金曜</span>
+                                        <span class="time-text">18:45~19:45</span>
+                                    </div>
+                                </div>
                                 <div class="modal-schedule-list">
                                     <div class="modal-schedule-item">
-                                        <span class="day-badge">木曜</span>
-                                        <span class="time-text">19:30~20:30 (予定)</span>
+                                        <span class="day-badge">土曜</span>
+                                        <span class="time-text">16:45~17:45</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                       <tr><th>年齢制限</th><td>なし</td></tr>
-                        <tr><th>定員</th><td>各クラス 6名</td></tr>
+                        <tr><th>月謝</th><td>¥8,900 <small>(税込)</small></td></tr>
                     </table>
                 `
             },
-            // ここから追加：ダンス特化クラス
             "dance-special": {
                 tag: "ダンス特化クラス",
                 title: "DANCE SPECIAL / CHOREO",
                 body: `
                     <p class="modal-desc">K-POPの基礎レッスンから、カバーダンスなど、ダンススキルをトータルで磨き上げる特化型クラスです。</p>
                     <table class="modal-table">
-                        <tr><th>月謝</th><td>未定</td></tr>
+                        <tr><th>内容</th><td>ダンス基礎・応用</td></tr>
+                        <tr><th>年齢制限</th><td>なし</td></tr>
+                        <tr><th>所要時間</th><td>1時間30分</td></tr>
+                        <tr><th>定員</th><td>なし</td></tr>
                         <tr>
                             <th>日程</th>
                             <td>
+                              <div class="modal-schedule-list">
+                                    <div class="modal-schedule-item">
+                                        <span class="day-badge">木曜</span>
+                                        <span class="time-text">18:00~19:30</span>
+                                    </div>
+                                </div>
                                 <div class="modal-schedule-list">
                                     <div class="modal-schedule-item">
-                                        <span class="day-badge">調整中</span>
-                                        <span class="time-text">調整中</span>
+                                        <span class="day-badge">木曜</span>
+                                        <span class="time-text">19:45~21:15</span>
                                     </div>
                                 </div>
                             </td>
                         </tr>
-                        <tr><th>年齢制限</th><td>なし</td></tr>
+                        <tr><th>月謝</th><td>¥8,900 <small>(税込)</small></td></tr>
                     </table>
                 `
             },
-            // 追加：マンツーマンレッスン（オプション）
             onetoone: {
                 tag: "マンツーマンレッスン（希望者）",
                 title: "PRIVATE LESSON",
@@ -1028,59 +1069,73 @@
             }
         };
 
-        const modalOverlay = document.getElementById('class-modal');
-        const modalCloseBtn = document.getElementById('js-modal-close');
-        const gridItems = document.querySelectorAll('.grid-item');
+        // 【修正】3. クラス詳細モーダルの制御
+        const modalTriggers = document.querySelectorAll('.js-modal-open, .grid-item-option'); // 両方のクラスに対応
+        const classModal = document.getElementById('class-modal'); // IDを実態に合わせました
+        const closeBtn = document.getElementById('js-modal-close');
+        
+        // モーダル内部の書き換え用要素
+        const modalTag = document.getElementById('modal-tag');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
 
-        const mTag = document.getElementById('modal-tag');
-        const mTitle = document.getElementById('modal-title');
-        const mBody = document.getElementById('modal-body');
+        // モーダルを開く処理
+        modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const modalKey = trigger.getAttribute('data-modal');
+                const data = modalData[modalKey];
 
-        // モーダルを開く
-        gridItems.forEach(item => {
-            item.addEventListener('click', () => {
-                const targetKey = item.getAttribute('data-modal');
-                const data = modalData[targetKey];
+                if (data && classModal) {
+                    // データをモーダルに注入
+                    modalTag.textContent = data.tag;
+                    modalTitle.textContent = data.title;
+                    modalBody.innerHTML = data.body;
 
-                if (data) {
-                    mTag.textContent = data.tag;
-                    mTitle.textContent = data.title;
-                    mBody.innerHTML = data.body;
-
-                    modalOverlay.classList.add('is-active');
-                    body.classList.add('menu-open'); // 背景スクロール固定
+                    // モーダルを表示してベースのスクロールをロック
+                    classModal.classList.add('is-active');
+                    body.classList.add('modal-open'); 
                 }
             });
         });
 
-        // モーダルを閉じる関数
-        const closeModal = () => {
-            modalOverlay.classList.remove('is-active');
-            body.classList.remove('menu-open');
+        // モーダルを閉じる処理
+        const closeClassModal = () => {
+            if (classModal) {
+                classModal.classList.remove('is-active');
+                body.classList.remove('modal-open');
+            }
         };
 
-        modalCloseBtn.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) closeModal(); // 背景クリックで閉じる
-        });
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeClassModal();
+            });
+        }
+
+        if (classModal) {
+            classModal.addEventListener('click', (e) => {
+                if (e.target === classModal) {
+                    closeClassModal();
+                }
+            });
+        }
 
         // 講師用モーダルの制御
         const instructorCards = document.querySelectorAll('.instructor-card');
         const insModalOverlays = document.querySelectorAll('.ins-modal-overlay');
 
-        // カードクリックで対応するモーダルを開く
         instructorCards.forEach(card => {
             card.addEventListener('click', () => {
                 const modalId = card.getAttribute('data-ins-modal');
                 const targetModal = document.getElementById(modalId);
                 if (targetModal) {
                     targetModal.classList.add('is-active');
-                    body.classList.add('menu-open'); // 背景スクロールを固定
+                    body.classList.add('menu-open'); // 講師用は既存通りmenu-openを使用
                 }
             });
         });
 
-        // 閉じるボタンまたは背景クリックでモーダルを閉じる
         insModalOverlays.forEach(overlay => {
             const closeBtn = overlay.querySelector('.ins-modal-close');
             
@@ -1111,11 +1166,6 @@
                 const item = trigger.parentNode;
                 const answer = trigger.nextElementSibling;
 
-                // 他の開いているFAQを閉じたい場合は以下2行のコメントアウトを解除してください
-                // document.querySelectorAll('.faq-item.is-open').forEach(openItem => {
-                //     if(openItem !== item) { openItem.classList.remove('is-open'); openItem.querySelector('.faq-answer').style.maxHeight = null; }
-                // });
-
                 if (item.classList.contains('is-open')) {
                     item.classList.remove('is-open');
                     answer.style.maxHeight = null;
@@ -1125,8 +1175,6 @@
                 }
             });
         });
-
-        
     </script>
 
 </body>
