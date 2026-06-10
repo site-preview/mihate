@@ -11,129 +11,133 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <link rel="stylesheet" href="style.css">
-    <style>
-        .legal-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 30px;
-            color: #ffffff;
+<style>
+        /* 固定ヘッダーに被らないよう、上部に余白をガッツリ確保 */
+        .sub-hero {
+            padding-top: 130px !important; 
+            padding-bottom: 30px;
+            text-align: center;
         }
-        .legal-table th, .legal-table td {
-            border: 1px solid #222222;
-            padding: 15px 20px;
-            text-align: left;
+
+        /* 💡 左右の余白をしっかり作り、中央に文字の塊を配置 */
+        .legal-text-container {
+            max-width: 800px;         /* 横幅が広がりすぎないように制限 */
+            margin: 40px auto 0 auto; /* 画面の中央に寄せる */
+            padding: 0 25px;          /* 左右にしっかり余白を作って端の詰まりを解消 */
+            color: #dddddd;
             font-size: 14px;
+            line-height: 1.9;         /* 行間を少しだけ広げて、よりお堅い規約書っぽく */
+            text-align: justify;      /* 両端揃えで文字のブロック感を強調 */
         }
-        .legal-table th {
-            background-color: #111111;
-            color: #ffffff;
-            width: 30%;
+        
+        .legal-block {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #1c1c1c;
+        }
+        
+        .legal-block:last-child {
+            border-bottom: none;
+        }
+        
+        .legal-label {
+            display: block;
+            font-size: 15px;
             font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
         }
-        @media (max-width: 600px) {
-            .legal-table th, .legal-table td {
-                display: block;
-                width: 100%;
+        
+        .legal-value {
+            margin: 0;
+            padding-left: 5px;
+            white-space: pre-wrap;
+        }
+
+        /* スマホ表示（768px以下）のときの調整 */
+        @media (max-width: 768px) {
+            .sub-hero {
+                padding-top: 110px !important;
             }
-            .legal-table th {
-                border-bottom: none;
-                padding-bottom: 5px;
-            }
-            .legal-table td {
-                padding-top: 5px;
+            .legal-text-container {
+                padding: 0 20px; /* スマホの画面端でも文字がくっつかないように余白をキープ */
+                font-size: 13px; /* スマホ用に少し文字サイズを調整 */
             }
         }
     </style>
 </head>
-<body class="entry-page-body">
+<body>
 
-    <header id="top">
-        <a href="index.html" class="logo">
-            <img src="img/logo_v2.png" alt="MIHATE ACADEMY" class="logo-img">
-        </a>
-        
-        <button class="menu-btn" aria-label="メニューを開閉する" id="js-menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <nav id="js-nav">
-            <ul>
-                <li><a href="index.html#about">About</a></li>
-                <li><a href="index.html#news">News</a></li>
-                <li><a href="index.html#classes">Classes</a></li>
-                <li><a href="index.html#instructors">Instructor</a></li>
-                <li><a href="index.html#schedule">Schedule</a></li>
-                <li><a href="index.html#access">Access</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="img/logo_v2.png" alt="MIHATE ACADEMY" class="logo-img">
+            </a>
+        </div>
     </header>
 
-    <main class="entry-main" style="padding-top: 140px; padding-bottom: 80px;">
-        <section class="section">
-            <div class="container" style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
-                <h1 class="section-title" style="margin-bottom: 10px; color: #ffffff;">Legal Notice</h1>
-                <p class="goal-text" style="text-align: center; margin-bottom: 50px; color: #ffffff;">特定商取引法に基づく表記</p>
+    <section class="sub-hero">
+        <div class="sub-hero-content">
+            <h1>LEGAL</h1>
+            <p>特定商取引法に基づく表記</p>
+        </div>
+    </section>
+
+   <main class="sub-page-container">
+        <div class="sub-page-inner">
+            
+            <div class="legal-text-container" style="margin-top: 0;">
                 
-                <table class="legal-table">
-                    <tr>
-                        <th>サービス名</th>
-                        <td>MIHATE ACADEMY</td>
-                    </tr>
-                    <tr>
-                        <th>販売事業者</th>
-                        <td>MIHATE ACADEMY</td>
-                    </tr>
-                    <tr>
-                        <th>運営責任者</th>
-                        <td>請求があった場合、遅滞なく開示いたします。</td>
-                    </tr>
-                    <tr>
-                        <th>所在地</th>
-                        <td>請求があった場合、遅滞なく開示いたします。</td>
-                    </tr>
-                    <tr>
-                        <th>電話番号</th>
-                        <td>請求があった場合、遅滞なく開示いたします。</td>
-                    </tr>
-                    <tr>
-                        <th>メールアドレス</th>
-                        <td>mihate.academy@gmail.com</td>
-                    </tr>
-                    <tr>
-                        <th>販売価格</th>
-                        <td>各コース紹介ページに記載しております。</td>
-                    </tr>
-                    <tr>
-                        <th>お支払い方法</th>
-                        <td>クレジットカード決済、銀行振込、その他当社が定める方法</td>
-                    </tr>
-                    <tr>
-                        <th>お支払い時期</th>
-                        <td>お申し込み時または当社が指定する期日までにお支払いください。</td>
-                    </tr>
-                    <tr>
-                        <th>サービス提供時期</th>
-                        <td>入会手続き完了後、各コースのスケジュールに従い提供いたします。</td>
-                    </tr>
-                    <tr>
-                        <th>キャンセル・返金について</th>
-                        <td>
-                            受講開始後の返金は原則としてお受けできません。<br><br>
-                            詳細は利用規約をご確認ください。
-                        </td>
-                    </tr>
-                </table>
-                
-                <div class="back-to-home" style="margin-top: 60px;">
-                    <a href="index.html" class="back-btn" style="color: #ffffff;">
-                        <i class="fa-solid fa-arrow-left"></i> TOPページへ戻る
-                    </a>
+                <h2 class="sub-page-title" style="margin-bottom: 15px;">特定商取引法に基づく表記に関する公告</h2>
+                <p style="color: #888888; font-size: 13px; margin-bottom: 40px; line-height: 1.6;">
+                    「特定商取引に関する法律」第11条に基づき、以下の通り販売条件および提供役務に関する重要事項を開示いたします。
+                </p>
+
+                <div class="legal-block">
+                    <span class="legal-label">【事業者の名称・氏名、所在地、および連絡先情報について】</span>
+                    <p class="legal-value">特定商取引に関する法律第11条に基づき表示が義務付けられている、当事業者の名称・代表者氏名、登録所在地、および確認用電話番号等の詳細情報につきましては、消費者庁の定める特商法ガイドライン（表示の省略規定）に準拠し、ウェブサイト上での常時直接公開を差し控えております。これらに関する開示請求（電磁的記録等による提示）を希望される場合は、下記記載の指定電子メール窓口、または公式コミュニケーションラインよりご請求ください。合理的な期間に基づき、遅滞なく電磁的方法等にて当該情報を開示・提供いたします。</p>
                 </div>
+
+                <div class="legal-block">
+                    <span class="legal-label">【連絡先・電気通信サービス窓口】</span>
+                    <p class="legal-value"> メールアドレス：mihate.academy@gmail.com（※お取引、ご契約状況に関するお問い合わせは、記録保持の観点および対応迅速化のため、電子メールまたは公式コミュニケーションラインによる窓口を主たる連絡手段として推奨しております。お電話でのご請求が発生する場合は、遅滞なく電磁的記録等にて開示いたします。）</p>
+                </div>
+
+                <div class="legal-block">
+                    <span class="legal-label">【販売価格・役務の対価】</span>
+                    <p class="legal-value">各プラン、コース、提供役務、レッスン形態毎に個別に設定され、当ウェブサイト上の決済画面、申込画面、または個別の電磁的契約書面等において表示される税込総額価格に準拠するものとします。</p>
+                </div>
+
+                <div class="legal-block">
+                    <span class="legal-label">【販売価格以外の必要料金および付帯費用】</span>
+                    <p class="legal-value">当ウェブサイトのご利用、コンテンツ閲覧、各種通信システム利用時におけるインターネット接続環境の維持、維持管理費用、パケット通信料、パケット通信料金、並びに銀行振込決済を選択された際の手数料等はすべて利用者の自己負担となります。また、対面レッスン受講の際におけるスタジオへの交通費等は一切含まれておりません。</p>
+                </div>
+
+                <div class="legal-block">
+                    <span class="legal-label">【代金の支払方法・決済手段】</span>
+                    <p class="legal-value">クレジットカード決済（Visa、Mastercard、JCB、American Express、Diners Club等、各種提携カード会社による一括または月次自動振替決済）、および指定 of 銀行口座への振込送金決済がご利用いただけます。</p>
+                </div>
+
+                <div class="legal-block">
+                    <span class="legal-label">【代金の支払時期・決済実行タイミング】</span>
+                    <p class="legal-value">月謝制プランおよび継続的な役務提供契約においては、初月分は契約締結時に即時決済が実行され、翌月以降分については毎月指定の期日（当月25日等、選択された決済手段の規約に基づく）に自動的に決済が実行されます。銀行振込の場合は、原則として個別契約書に定める期日までの前払いとします。</p>
+                </div>
+
+                <div class="legal-block">
+                    <span class="legal-label">【役務の提供時期・レッスン開始日】</span>
+                    <p class="legal-value">受講希望者による入会手続き、初期費用の決済確認、または指定口座への着金が当アカデミーにて確認され、登録手続きが完了した日以降、事前に合意した初回レッスン開講スケジュールの日時より速やかに提供を開始するものとします。</p>
+                </div>
+
+                <div class="legal-block">
+                    <span class="legal-label">【返金・返品・解約（退会）に関する特約事項】</span>
+                    <p class="legal-value">提供される役務の性質上、契約確定後およびレッスン受講開始後における利用者都合による日割返金、中途返金、過去に遡っての返金等には一切応じられません。退会または翌月以降のプラン解約（自動更新の停止）を希望する場合は、解約を希望する月の前月10日までに、当アカデミー所定の解約手続き（書面、または電子フォームによる申請）を完了する必要があり、期日を過ぎた場合は翌々月以降の解約適用となります。なお、特定商取引法に基づくクーリング・オフ制度の適用対象外となる取引、あるいは中途解約法規に準拠する役務範囲については、個別契約時の契約書面の定めに従うものとします。</p>
+                </div>
+
+            </div> <div style="margin-top: 50px; text-align: center;">
+                <a href="index.html" class="btn btn-primary" style="display: inline-block; padding: 12px 30px;">トップページへ戻る</a>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
@@ -171,4 +175,11 @@
                 </div>
                 <p class="copyright">© 2026 MIHATE ACADEMY. All Rights Reserved.</p>
                 <a href="#" class="pagetop-btn" aria-label="ページトップへ戻る">
-                    <i class
+                    <i class="fa-solid fa-chevron-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
