@@ -145,6 +145,9 @@ nav ul li a {
     font-size: 12px;
     color: #cccccc;
     margin-bottom: 0;
+    letter-spacing: 0.3em;
+    line-height: 1.6;
+    margin-top: 20px;
 }
 
 /* エントリーボタンのラッパー */
