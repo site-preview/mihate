@@ -148,6 +148,7 @@ nav ul li a {
     letter-spacing: 0.3em;
     line-height: 1.6;
     margin-top: 20px;
+    font-family: "BIZ UDPMincho", "Hiragino Mincho ProN", "MS Mincho", serif;
 }
 
 /* エントリーボタンのラッパー */
